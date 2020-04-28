@@ -25,7 +25,7 @@ if(navigator.geolocation) {
         // set maker position using the latitude and longitude in the received position
         markerPosition = {lat:position.coords.latitude,lng:position.coords.longitude};
         //  create makrker element using the received position
-        var icon = new H.map.Icon('img/home_logo.png');
+        var icon = new H.map.Icon('img/home.png');
         posMarker = new H.map.Marker(markerPosition,{icon: icon});
         posMarker.setData("I'm HERE");
         //  Add marker to map.
@@ -35,7 +35,7 @@ if(navigator.geolocation) {
             position: markerPosition,
             zoom: 19,
             heading: 0,
-            tilt: 60});
+            tilt: 0});
         // user marker
         /*
         var icon = new H.map.Icon('img/home_logo.png');
@@ -61,24 +61,24 @@ if(navigator.geolocation) {
             })
         }
 
-    function addMarker(newPos,respData){
-        var evIcon = new H.map.Icon('img/bar.png');
-        evMarker = new H.map.Marker(newPos,{ icon: evIcon });
-        evMarker.setData(respData);
-        map.addObject(evMarker);
-    }
-    function addInfoBubble(map){
-        map.addEventListener('tap', function (evt) {
-            var bubble =  new H.ui.InfoBubble(evt.target.getGeometry(), {
-                // read custom data
-                content: evt.target.getData()
-            });
-            // show info bubble
-            ui.addBubble(bubble);
-        }, false);
-    }
-    displayDATA();
-    addInfoBubble(map);
+        function addMarker(newPos,respData){
+            var evIcon = new H.map.Icon('img/bar.png');
+            evMarker = new H.map.Marker(newPos,{ icon: evIcon });
+            evMarker.setData(respData);
+            map.addObject(evMarker);
+        }
+        function addInfoBubble(map){
+            map.addEventListener('tap', function (evt) {
+                var bubble =  new H.ui.InfoBubble(evt.target.getGeometry(), {
+                    // read custom data
+                    content: evt.target.getData()
+                });
+                // show info bubble
+                ui.addBubble(bubble);
+            }, false);
+        }
+        displayDATA();
+        addInfoBubble(map);
 
         /*------------------------CIRCLE-----------------------------------------------------*/
         /*
@@ -94,15 +94,14 @@ if(navigator.geolocation) {
 
         drawCircle();
         */
-    /*------------------------ISOLINES-----------------------------------------------------*/
-    var myLoc = myPos.lat + ',' + myPos.lng;
-    var routingParams = {
+        /*------------------------ISOLINES-----------------------------------------------------*/
+        var myLoc = markerPosition.lat + ',' + markerPosition.lng;
+        var routingParams = {
             'mode': 'fastest;car;',
             'start': myLoc,
-            'range': '600', // 10 (10x60secs) minutes of driving
+            'range': '600', 
             'rangetype': 'time'
-    };
-    // Define a callback function to process the isoline response.
+        };
         var onResult = function(result) {
             var center = new H.geo.Point(
                 result.response.center.latitude,
@@ -111,33 +110,14 @@ if(navigator.geolocation) {
                 linestring = new H.geo.LineString(),
                 isolinePolygon,
                 isolineCenter;
-
-        // Add the returned isoline coordinates to a linestring:
-
-            isolineCoords.forEach(function(coords) {
-                linestring.pushLatLngAlt.apply(linestring, coords.split(','))
+                isolineCoords.forEach(function(coords) {
+                    linestring.pushLatLngAlt.apply(linestring, coords.split(','))
             })
-
-// Create a polygon and a marker representing the isoline:
-
             isolinePolygon = new H.map.Polygon(linestring);
-
-// Add the polygon and marker to the map:
-
             map.addObject(isolinePolygon);
-
-// Center and zoom the map so that the whole isoline polygon is
-// in the viewport:
-
             map.getViewModel().setLookAtData({bounds: isolinePolygon.getBoundingBox()});
         }
-
-    // Get an instance of the routing service:
-
         var router = platform.getRoutingService();
-
-    // Call the Routing API to calculate an isoline:
-
         router.calculateIsoline(
             routingParams,
             onResult,
