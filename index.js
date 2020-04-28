@@ -34,7 +34,7 @@ if(navigator.geolocation) {
         map.getViewModel().setLookAtData({
             position: markerPosition,
             zoom: 19,
-            heading: 0,
+            heading: 180,
             tilt: 0});
         // user marker
         /*
