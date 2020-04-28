@@ -166,7 +166,8 @@ a[data-toggle="collapse"] {
 #sidebarCollapse{
 	span{
 		@include media-breakpoint-down(md){
-	    display: none;
+		display: none;
+		position: fixed;
 		}
 	}
 }

@@ -8331,7 +8331,7 @@ a[data-toggle="collapse"] {
   /* IMAGE STYLES */
   [type=radio] + img {
     cursor: pointer;
-    margin: 5px;
+    margin: 12px;
   }
   
   /* CHECKED STYLES */
@@ -8343,4 +8343,20 @@ a[data-toggle="collapse"] {
     font-size: large;
     font-weight: 500;
     color: green;
+  }
+
+  #map {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+ }
+ 
+  #OutputId {
+    font-weight: lighter;
+    font-style: italic;
+  }
+
+  #tipos {
+    font-weight: bold;
+    font-size: medium;
   }

@@ -126,7 +126,10 @@ if(navigator.geolocation) {
             }
         );
         
-        $$('#range').forEach(c => c.onchange = () => {routingParams.range = document.getElementById('range').value; displayDATA()});
+        $$('#range').forEach(c => c.onchange = () => {routingParams.range = document.getElementById('range').value; router.calculateIsoline(routingParams,onResult,function(error){
+            alert(error.message)
+        })});
+        
     });
 
 }
