@@ -10,33 +10,27 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/tangram/dist/tangram.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/IvanSanchez/Leaflet.Polyline.SnakeAnim/L.Polyline.SnakeAnim.js"></script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css"/>
+   <script src="https://unpkg.com/tangram/dist/tangram.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/gh/IvanSanchez/Leaflet.Polyline.SnakeAnim/L.Polyline.SnakeAnim.js"></script>
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+  
   </head>
   <body>
 		
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
-				<div class="p-4 pt-5">
+				<div class="p-4 pt-5 fixed">
 		  		<a href="#" class="img logo mb-8" style="background-image: url(images/gistorras_sinfondo.png);"></a>
 	        <ul class="list-unstyled components mb-5">
 	          <li class="active">
 	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">¿Donde comer?</a>
 	            <ul class="collapse list-unstyled" id="homeSubmenu">
                 <br>          
-                
                   <li>
-                      <span id="tipos">Transporte:<br></span>
+                      Transporte:<br>
                       <label>
                         <input type="radio" name="routing-mode" id="bike" value="bike">
-                        <img src="images/bycicle.png"  width="50" height="50">
+                          <img src="images/bycicle.png"  width="50" height="50">
                       </label>
                       <label>
                       <input type="radio" name="routing-mode" id="car" value="car">
@@ -44,16 +38,15 @@
                       </label>
                       <label>
                       <input type="radio" name="routing-mode" id="walk" value="walk">
-                      <img src="images/walk.png"  width="45" height="45">
+                      <img src="images/walk.png"  width="50" height="50">
                       </label>
-                  </li>
-                
+                  </li>        
                 <li>
-                 <span id="tipos"> Distancia:</span>
+                  Distancia:
                     <div class="slidecontainer">
-                    <input type="range" min="10" max="4000" value="500" class="slider" id="range" oninput="OutputId.value = range.value">
+                    <input type="range" min="10" max="4000" value="50" class="slider" id="InputId" oninput="OutputId.value = InputId.value">
                   <br>
-                  <span id="OutputId"><output name="OutputName" id="OutputId">250</output> Metros</span>
+                  <output name="OutputName" id="OutputId">50</output> Metros
                   <script>
                   function updateTextInput(val) {
           document.getElementById('textInput').value=val; 
@@ -63,7 +56,7 @@
                 </li>
                 <li>
                    <div class="form-group">
-                  <span id="tipos"><label for="sel1">Tipo de comida:</label></span>
+                  <label for="sel1">Tipo de comida:</label>
                   <select class="form-control" id="sel1">
                     <option>Mexicana</option>
                     <option>Española</option>
@@ -75,7 +68,7 @@
                 </li>
 	            </ul>
             <li>
-              <a href="tarjetas.html">Listado</a>
+              <a href="index.html">Mapa</a>
 	          </li>
 	          </li>
 	          <li>
@@ -103,38 +96,73 @@
     	</nav>
 
         <!-- Page Content  -->
-      <div id="content" class="p-0 p-md-0">
-        
+      <div id="content" class="p-10 p-md-10">
         <nav>
-          <div style="z-index:4">
-
+          <div class="fixed">
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
-
-<!--           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-              </ul>
             </div>
---> 
         </nav>
+        <div class="container">   
+    <div class="card-deck mt-1">
 
-        <div id="map">
+      <div class="card text-center">
+      <img class="card-img-top" src="images/restaurantes/elpatron.jpg" alt="Card image" style="width:100%;height:50%">
+        <div class="card-body">      
+          <h4 class="card-title">El Patron</h4>
+          <p class="card-text">Mexicana - Casera </p>
+          <p class="card-text">91 789 21 32 - <img src="images/point_blank.png" width="25" height="25" href=""> 250m</p>
+          
+          
+        </div>
+        <a href="#" class="btn btn-primary">Ir aqui</a>
+      </div>          
+
+      <div class="card text-center">
+        <img class="card-img-top" src="images/restaurantes/puchero.webp" alt="Card image" style="width:100%;height:50%">
+        <div class="card-body">   
+          <h4 class="card-title">El puchero</h4>
+          <p class="card-text">Española - Casera </p>
+          <p class="card-text">91 212 212 21  <img src="images/point_blank.png" width="25" height="25" href=""> 450m</p>
+
+          
+        </div>
+        <a href="#" class="btn btn-primary">Ir aqui</a>
+      </div> 
+      <div class="card text-center">
+      <img class="card-img-top" src="images/restaurantes/hamburguer.jpg" alt="Card image" style="width:100%;height:100%">
+        <div class="card-body">      
+          <h4 class="card-title">Hamburgueseria La grasa</h4>
+          <p class="card-text">Americana - Burguer </p>
+          <p class="card-text">91 111 11 12 - <img src="images/point_blank.png" width="25" height="25" href=""> 950m</p>
+          
+          
+        </div>
+        <a href="#" class="btn btn-primary">Ir aqui</a>
+      </div>          
+      <div class="card text-center">
+        <div class="card-body">
+          <h4 class="card-title">Titulo de la tarjeta 3</h4>
+          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus sem, 
+                                tempor vitae mattis malesuada, ornare sed erat. Pellentesque nulla dui, congue
+                                nec tortor sit amet, maximus mattis dui. </p>
+          <a href="#" class="btn btn-primary">Entrar</a>
+        </div>
+      </div>                
+
+    </div>
+  </div>  
+      </div>          
             <script src="index.js" type="text/javascript"></script>
         </div>
+
+
+
+
+
+
       </div>
 		</div>
 
