@@ -130,11 +130,15 @@ function distanceCoords(lat1,lon1,lat2,lon2) {
 }
 
 function addMarkerToGroup(coordinate, html, group) {
-    //console.log(html.properties)
+    console.log(html.properties)
     var evIcon = new H.map.Icon('img/bar.png');
     var marker = new H.map.Marker(coordinate, { icon: evIcon });
     // add custom data to the marker
-    marker.setData(`<h5>${html.properties.NombreComercial}</h5> ${html.properties.Dirección}`);
+    if (html.properties.imagen)
+        imagen = html.properties.imagen;
+    else
+        imagen = "assets/images/default.png"
+    marker.setData(`<h5 style="width: 10em;">${html.properties.NombreComercial}</h5> <p>${html.properties.Dirección}</p> <p>${html.properties.cocina}</p> <img src="${image}">`);
     marker.id = "marker";
     group.addObject(marker);
   }
@@ -157,7 +161,7 @@ function addInfoBubble(map){
     }, false);
 }
 function displayDATA(id, map, circle, group){
-    let url = 'https://xyz.api.here.com/hub/spaces/k4RzVHIc/search?limit=5000&clientId=cli&access_token=ABXqDStGTXGkWJBAvHqoSQA';
+    let url = 'https://xyz.api.here.com/hub/spaces/s80VI0RA/search?limit=5000&clientId=cli&access_token=ABXqDStGTXGkWJBAvHqoSQA';
     fetch(url, {
         "method": "GET"
     }).then(response => response.json()
