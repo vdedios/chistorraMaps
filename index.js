@@ -130,10 +130,11 @@ function distanceCoords(lat1,lon1,lat2,lon2) {
 }
 
 function addMarkerToGroup(coordinate, html, group) {
+    //console.log(html.properties)
     var evIcon = new H.map.Icon('img/bar.png');
     var marker = new H.map.Marker(coordinate, { icon: evIcon });
     // add custom data to the marker
-    marker.setData(html);
+    marker.setData(`<h5>${html.properties.NombreComercial}</h5> ${html.properties.Dirección}`);
     marker.id = "marker";
     group.addObject(marker);
   }
@@ -161,17 +162,17 @@ function displayDATA(id, map, circle, group){
         "method": "GET"
     }).then(response => response.json()
     ).then(response => {
-        console.log(response);
+        //console.log(response);
         // If distance between item and circle center is less than circle radious, create it and display it
         for (i=0; i < response.features.length; i++){
-            console.log(response.features[i])
+            //console.log(response.features[i])
             if (id){
                 if (circle.getRadius() > distanceCoords(response.features[i].geometry.coordinates[1],
                     response.features[i].geometry.coordinates[0],
                     markerPosition.lat, markerPosition.lng)){
                     newPos= ({lat: response.features[i].geometry.coordinates[1], lng: response.features[i].geometry.coordinates[0]});
                     respData= response.features[i];
-                    addMarkerToGroup(newPos, respData, map, group);
+                    addMarkerToGroup(newPos, respData, group);
                     //--------NOTA--------------------
                     // Aqui es donde se tienen que ir creando las tarjetas
                     //--------------------------------
@@ -181,7 +182,7 @@ function displayDATA(id, map, circle, group){
             else{
                 newPos= ({lat: response.features[i].geometry.coordinates[1], lng: response.features[i].geometry.coordinates[0]});
                 respData= response.features[i].id;
-                addMarkerToGroup(newPos, respData, map, group);
+                addMarkerToGroup(newPos, respData, group);
             }
         }
     })
