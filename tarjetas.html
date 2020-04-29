@@ -4,7 +4,7 @@
   	<title>GISTorras | ¿Donde comer?</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" type="image/png" href="/imáges/logo.png" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
@@ -12,16 +12,9 @@
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/tangram/dist/tangram.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/IvanSanchez/Leaflet.Polyline.SnakeAnim/L.Polyline.SnakeAnim.js"></script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css"/>
-   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
   </head>
-  <body>
-		
+<body>
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
 				<div class="p-4 pt-5">
@@ -38,7 +31,7 @@
  
             <p>
 	          <li class="active">
-	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle" id="mymenu" ><i class="fas fa-filter" style="margin-right:15px" ></i>    Filtrar</a>
+	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"  id="mymenu"><i class="fas fa-filter" style="margin-right:15px" ></i>    Filtrar</a>
 	            <ul class="collapse show list-unstyled" id="homeSubmenu">
                 <br>          
                   <li>
@@ -90,11 +83,11 @@
                 </li>
 	            </ul>
             <li>
-              <a href="tarjetas.html" id="mymenu" ><i class="fas fa-list" style="margin-right:15px"></i> Listado</a>
+              <a href="index.html"  id="mymenu"><i class="fas fa-map-marked-alt" style="margin-right:15px"></i> Mapa</a>
 	          </li>
 	          </li>
 	          <li>
-              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  id="mymenu"><i class="fas fa-percent" style="margin-right:15px" ></i> ¡Ofertas!</a>
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  id="mymenu"><i class="fas fa-percent" style="margin-right:15px"></i> ¡Ofertas!</a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
                     <a href="#">Ruta de la tapa</a>
@@ -146,10 +139,55 @@
             </div>
 --> 
         </nav>
+        <div class="container">   
+    <div class="card-deck mt-1">
 
-        <div id="map">
-            <script src="index.js" type="text/javascript"></script>
+      <div class="card text-center">
+      <img class="card-img-top" src="images/restaurantes/elpatron.jpg" alt="Card image" >
+        <div class="card-body">      
+          <h4 class="card-title">El Patron</h4>
+          <p class="card-text">Mexicana - Casera </p>
+          <p class="card-text">91 789 21 32 - <img src="images/point_blank.png" width="25" height="25" href=""> 250m</p>
+          
+          
         </div>
+        <a href="#" class="btn btn-primary">Ir aqui</a>
+      </div>          
+
+      <div class="card text-center">
+        <img class="card-img-top" src="images/restaurantes/puchero.webp" alt="Card image" >
+        <div class="card-body">   
+          <h4 class="card-title">El puchero</h4>
+          <p class="card-text">Española - Casera </p>
+          <p class="card-text">91 212 212 21  <img src="images/point_blank.png" width="25" height="25" href=""> 450m</p>
+
+          
+        </div>
+        <a href="#" class="btn btn-primary">Ir aqui</a>
+      </div> 
+      <div class="card text-center">
+      <img class="card-img-top" src="images/restaurantes/hamburguer.jpg" alt="Card image" >
+        <div class="card-body">      
+          <h4 class="card-title">Hamburgueseria La grasa</h4>
+          <p class="card-text">Americana - Burguer </p>
+          <p class="card-text">91 111 11 12 - <img src="images/point_blank.png" width="25" height="25" href=""> 950m</p>
+          
+          
+        </div>
+        <a href="#" class="btn btn-primary">Ir aqui</a>
+      </div>          
+      <div class="card text-center">
+        <div class="card-body">
+          <h4 class="card-title">Titulo de la tarjeta 3</h4>
+          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus sem, 
+                                tempor vitae mattis malesuada, ornare sed erat. Pellentesque nulla dui, congue
+                                nec tortor sit amet, maximus mattis dui. </p>
+          <a href="#" class="btn btn-primary">Entrar</a>
+        </div>
+      </div>                
+
+    </div>
+  </div>  
       </div>
 		</div>
 
