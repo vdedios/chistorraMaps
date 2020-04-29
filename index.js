@@ -138,7 +138,9 @@ function addMarkerToGroup(coordinate, html, group) {
         imagen = html.properties.imagen;
     else
         imagen = "assets/images/default.png"
-    marker.setData(`<h5 style="width: 10em;">${html.properties.NombreComercial}</h5> <p>${html.properties.Dirección}</p> <p>${html.properties.cocina}</p> <img src="${image}">`);
+    if (html.properties.cocina)
+        cocina = html.properties.cocina
+    marker.setData(`<h5 style="width: 10em;">${html.properties.NombreComercial}</h5> <p>${html.properties.Dirección}</p> <p>${html.properties.cocina}</p>`);
     marker.id = "marker";
     group.addObject(marker);
   }
