@@ -1,4 +1,3 @@
-alert("Has sido hackeado. Te hemos grabado mientras te masturbabas por la webcam. Si no quieres que distribuyamos las imágenes a tus contactos haz una ingreso de 3000 euros a ES8332483839284723 en un plazo de 2 horas")
 var platform = new H.service.Platform({
     apikey: "eD_IzP_4psnri8dg2gg3-AdnamvR5vriLzfDccLfW1A"
 });
