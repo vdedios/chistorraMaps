@@ -44,7 +44,10 @@ if(navigator.geolocation) {
         var circle = newCircle(markerPosition, map);
         /*------------------------RESTAURANT DATA-------------------------------------*/
         // Displaying data
-        displayDATA(1, map, circle);
+        var group = new H.map.Group();
+
+        map.addObject(group);
+        displayDATA(1, map, circle, group);
         addInfoBubble(map);
 
         /*-------------------MODIFYING DATA FROM DOM----------------------------*/
@@ -53,7 +56,7 @@ if(navigator.geolocation) {
             removeObjectById("marker", map);
             circle.setRadius(document.getElementById('range').value); 
             map.getViewModel().setLookAtData({bounds: circle.getBoundingBox()});
-            displayDATA(1, map, circle);
+            displayDATA(1, map, circle, group);
         });
         //Get new address from input
         document.getElementById('change-start').onclick = addStartingMarker;
@@ -68,7 +71,7 @@ if(navigator.geolocation) {
             //removeObjectById("marker");
             circle.setCenter(markerPosition); 
             removeObjectById("marker", map);
-            displayDATA(1, map, circle);
+            displayDATA(1, map, circle, group);
         }
     /*------------------------NO GEO LOCALIZATION-------------------------------------*/
     }, function(){
@@ -81,7 +84,7 @@ if(navigator.geolocation) {
             if (circle){
                  circle.setRadius(document.getElementById('range').value); 
                 map.getViewModel().setLookAtData({bounds: circle.getBoundingBox()});
-                displayDATA(1, map, circle);
+                displayDATA(1, map, circle, group);
             }
         });
         //Get new address from input
@@ -99,7 +102,7 @@ if(navigator.geolocation) {
             //removeObjectById("marker");
             circle.setCenter(markerPosition); 
             removeObjectById("marker", map);
-            displayDATA(1, map, circle);
+            displayDATA(1, map, circle, group);
         }
     }
     );
@@ -125,6 +128,16 @@ function distanceCoords(lat1,lon1,lat2,lon2) {
         return dist;
     }
 }
+
+function addMarkerToGroup(coordinate, html, group) {
+    var evIcon = new H.map.Icon('img/bar.png');
+    var marker = new H.map.Marker(coordinate, { icon: evIcon });
+    // add custom data to the marker
+    marker.setData(html);
+    marker.id = "marker";
+    group.addObject(marker);
+  }
+
 function addMarker(newPos,respData, map){
     var evIcon = new H.map.Icon('img/bar.png');
     evMarker = new H.map.Marker(newPos,{ icon: evIcon });
@@ -142,8 +155,8 @@ function addInfoBubble(map){
         ui.addBubble(bubble);
     }, false);
 }
-function displayDATA(id, map, circle){
-    let url = 'https://xyz.api.here.com/hub/spaces/aNWlspJr/search?limit=5000&clientId=cli&access_token=AArSIpgPS0SB6ATsrgYQywA';
+function displayDATA(id, map, circle, group){
+    let url = 'https://xyz.api.here.com/hub/spaces/k4RzVHIc/search?limit=5000&clientId=cli&access_token=ABXqDStGTXGkWJBAvHqoSQA';
     fetch(url, {
         "method": "GET"
     }).then(response => response.json()
@@ -151,13 +164,14 @@ function displayDATA(id, map, circle){
         console.log(response);
         // If distance between item and circle center is less than circle radious, create it and display it
         for (i=0; i < response.features.length; i++){
+            console.log(response.features[i])
             if (id){
                 if (circle.getRadius() > distanceCoords(response.features[i].geometry.coordinates[1],
                     response.features[i].geometry.coordinates[0],
                     markerPosition.lat, markerPosition.lng)){
                     newPos= ({lat: response.features[i].geometry.coordinates[1], lng: response.features[i].geometry.coordinates[0]});
-                    respData= response.features[i].id;
-                    addMarker(newPos, respData, map);
+                    respData= response.features[i];
+                    addMarkerToGroup(newPos, respData, map, group);
                     //--------NOTA--------------------
                     // Aqui es donde se tienen que ir creando las tarjetas
                     //--------------------------------
@@ -167,7 +181,7 @@ function displayDATA(id, map, circle){
             else{
                 newPos= ({lat: response.features[i].geometry.coordinates[1], lng: response.features[i].geometry.coordinates[0]});
                 respData= response.features[i].id;
-                addMarker(newPos, respData, map);
+                addMarkerToGroup(newPos, respData, map, group);
             }
         }
     })
