@@ -8218,6 +8218,8 @@ h1, h2, h3, h4, h5,
 #sidebar {
   min-width: 300px;
   max-width: 300px;
+  height: 100vh;
+  overflow: auto;
   background: #1d1919;
   color: #fff;
   -webkit-transition: all 0.3s;
@@ -8336,7 +8338,8 @@ a[data-toggle="collapse"] {
   
   /* CHECKED STYLES */
   [type=radio]:checked + [id=fa_transport] {
-    box-shadow: 0 0 0 2px ;
+    box-shadow: 0 0 0 2px  #c12923;
+    background-color: #c12923;
   }
 
   #dolar {
