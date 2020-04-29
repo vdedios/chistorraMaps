@@ -7,7 +7,6 @@ const $$ = qq => document.querySelectorAll(qq);
 var defaultLayers = platform.createDefaultLayers();
 var initPos = {lat: 40.4165000, lng: -3.7025600};
 
-
 //--------NOTA-------------------
 //Si no carga la geolocalización, hay posición por default
 //Ahora solo queda organizar el código para que haya datos en ambos, localizado y no
@@ -56,71 +55,7 @@ if(navigator.geolocation) {
         map.getViewModel().setLookAtData({bounds: circle.getBoundingBox()});
         /*------------------------RESTAURANT DATA-------------------------------------*/
         // Displaying data
-        function displayDATA(){
-            let url = 'https://xyz.api.here.com/hub/spaces/aNWlspJr/search?limit=5000&clientId=cli&access_token=AArSIpgPS0SB6ATsrgYQywA';
-            fetch(url, {
-                "method": "GET"
-            }).then(response => response.json()
-            ).then(response => {
-                console.log(response);
-                // If distance between item and circle center is less than circle radious, create it and display it
-                for (i=0; i < response.features.length; i++){
-                    if (circle.getRadius() > distanceCoords(response.features[i].geometry.coordinates[1],
-                        response.features[i].geometry.coordinates[0],
-                        markerPosition.lat, markerPosition.lng)){
-                        newPos= ({lat: response.features[i].geometry.coordinates[1], lng: response.features[i].geometry.coordinates[0]});
-                        respData= response.features[i].id;
-                        addMarker(newPos, respData);
-                        //--------NOTA--------------------
-                        // Aqui es donde se tienen que ir creando las tarjetas
-                        // Hay un problema y es cuando el usuario se mueva se 
-                        // quedan almacenados los marker anteriores y hay que
-                        // ver cómo eliminarlos para que no se muestren ni en
-                        // el mapa ni en las tarjetas
-                        //--------------------------------
-                    }
-                }
-            })
-        }
-        //Calculate distance betwenn two coordinates
-        function distanceCoords(lat1,lon1,lat2,lon2) {
-            if ((lat1 == lat2) && (lon1 == lon2)) {
-                return 0;
-            }
-            else {
-                var radlat1 = Math.PI * lat1/180;
-                var radlat2 = Math.PI * lat2/180;
-                var theta = lon1-lon2;
-                var radtheta = Math.PI * theta/180;
-                var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-                if (dist > 1) {
-                    dist = 1;
-                }
-                dist = Math.acos(dist);
-                dist = dist * 180/Math.PI;
-                dist = dist * 60 * 1.1515;
-                dist = dist * 1609.344;
-                return dist;
-            }
-        }
-        function addMarker(newPos,respData){
-            var evIcon = new H.map.Icon('img/bar.png');
-            evMarker = new H.map.Marker(newPos,{ icon: evIcon });
-            evMarker.setData(respData);
-            evMarker.id = "marker";
-            map.addObject(evMarker);
-        }
-        function addInfoBubble(map){
-            map.addEventListener('tap', function (evt) {
-                var bubble =  new H.ui.InfoBubble(evt.target.getGeometry(), {
-                    // read custom data
-                    content: evt.target.getData()
-                });
-                // show info bubble
-                ui.addBubble(bubble);
-            }, false);
-        }
-        displayDATA();
+        displayDATA(1, map, circle);
         addInfoBubble(map);
 
         /*-------------------MODIFYING DATA FROM DOM----------------------------*/
@@ -136,7 +71,7 @@ if(navigator.geolocation) {
             removeObjectById("marker");
             circle.setRadius(document.getElementById('range').value); 
             map.getViewModel().setLookAtData({bounds: circle.getBoundingBox()});
-            displayDATA();
+            displayDATA(1, map, circle);
         });
         //Get new address from input
         document.getElementById('change-start').onclick = addStartingMarker;
@@ -151,7 +86,7 @@ if(navigator.geolocation) {
             //removeObjectById("marker");
             circle.setCenter(markerPosition); 
             removeObjectById("marker");
-            displayDATA();
+            displayDATA(1, map, circle);
         }
         async function geocode(query) {
             const url = `https://geocoder.ls.hereapi.com/6.2/geocode.json?apiKey=eD_IzP_4psnri8dg2gg3-AdnamvR5vriLzfDccLfW1A&searchtext=${query}`
@@ -159,19 +94,89 @@ if(navigator.geolocation) {
             const data = await response.json();
             return await data.Response.View[0].Result[0].Location.NavigationPosition[0];
         }
-    });
+    }, function(){
+        var map = new H.Map(
+            document.getElementById('map'),
+            defaultLayers.vector.normal.map,
+            {
+                position: initPos,
+                zoom: 12,
+                heading: 180,
+                tilt: 0
+            });
+        var ui = H.ui.UI.createDefault(map, defaultLayers);
+        var mapEvents = new H.mapevents.MapEvents(map);
+        var behavior = new H.mapevents.Behavior(mapEvents);
+        map.setCenter(initPos);
+        displayDATA(0, map, "");
+    }
+    );
 }
-else {
-    // Instantiate (and display) a map object:
-    var map = new H.Map(
-        document.getElementById('map'),
-        defaultLayers.vector.normal.map,
-        {
-            zoom: 17,
-            center: initPos
+//Calculate distance betwenn two coordinates
+function distanceCoords(lat1,lon1,lat2,lon2) {
+    if ((lat1 == lat2) && (lon1 == lon2)) {
+        return 0;
+    }
+    else {
+        var radlat1 = Math.PI * lat1/180;
+        var radlat2 = Math.PI * lat2/180;
+        var theta = lon1-lon2;
+        var radtheta = Math.PI * theta/180;
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        if (dist > 1) {
+            dist = 1;
+        }
+        dist = Math.acos(dist);
+        dist = dist * 180/Math.PI;
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1609.344;
+        return dist;
+    }
+}
+function addMarker(newPos,respData, map){
+    var evIcon = new H.map.Icon('img/bar.png');
+    evMarker = new H.map.Marker(newPos,{ icon: evIcon });
+    evMarker.setData(respData);
+    evMarker.id = "marker";
+    map.addObject(evMarker);
+}
+function addInfoBubble(map){
+    map.addEventListener('tap', function (evt) {
+        var bubble =  new H.ui.InfoBubble(evt.target.getGeometry(), {
+            // read custom data
+            content: evt.target.getData()
         });
-    var ui = H.ui.UI.createDefault(map, defaultLayers);
-    var mapEvents = new H.mapevents.MapEvents(map);
-    var behavior = new H.mapevents.Behavior(mapEvents);
-    console.error("Geolocation is not supported by this browser!");
+        // show info bubble
+        ui.addBubble(bubble);
+    }, false);
+}
+function displayDATA(id, map, circle){
+    let url = 'https://xyz.api.here.com/hub/spaces/aNWlspJr/search?limit=5000&clientId=cli&access_token=AArSIpgPS0SB6ATsrgYQywA';
+    fetch(url, {
+        "method": "GET"
+    }).then(response => response.json()
+    ).then(response => {
+        console.log(response);
+        // If distance between item and circle center is less than circle radious, create it and display it
+        for (i=0; i < response.features.length; i++){
+            if (id){
+                if (circle.getRadius() > distanceCoords(response.features[i].geometry.coordinates[1],
+                    response.features[i].geometry.coordinates[0],
+                    markerPosition.lat, markerPosition.lng)){
+                    newPos= ({lat: response.features[i].geometry.coordinates[1], lng: response.features[i].geometry.coordinates[0]});
+                    respData= response.features[i].id;
+                    addMarker(newPos, respData, map);
+                    //--------NOTA--------------------
+                    // Aqui es donde se tienen que ir creando las tarjetas
+                    //--------------------------------
+                }
+            }
+            //Default when no device position
+            else{
+                newPos= ({lat: response.features[i].geometry.coordinates[1], lng: response.features[i].geometry.coordinates[0]});
+                respData= response.features[i].id;
+                addMarker(newPos, respData, map);
+            }
+        }
+    })
 }
