@@ -17,6 +17,7 @@ var map = new H.Map(
 var ui = H.ui.UI.createDefault(map, defaultLayers);
 var mapEvents = new H.mapevents.MapEvents(map);
 var behavior = new H.mapevents.Behavior(mapEvents);
+var geoPosition;
 
 //--------NOTA-------------------
 //Si no carga la geolocalización, hay posición por default
@@ -27,6 +28,7 @@ if(navigator.geolocation) {
     /*------------------------GEO LOCALIZATION-------------------------------------*/
     navigator.geolocation.getCurrentPosition(position => {
         // console.log(position);
+        geoPosition = position;
         // set maker position using the latitude and longitude in the received position
         markerPosition = {lat:position.coords.latitude,lng:position.coords.longitude};
         //  create pos makrker element using the received position
@@ -171,7 +173,8 @@ function addMarkerToGroup(coordinate, html, group) {
     else
         cocina = "Vegetariana"
     telefono = "91 580 42 60";
-    marker.setData(`<h5 style="width: 10em;">${html.properties.NombreComercial}</h5> <img src="${imagen}" width="100px;"/> <p><a href="https://wego.here.com/" >Cómo llegar</a></p><p>${html.properties.Dirección}</p> <p><i>${telefono}</i></p> <p><i>${cocina}</i></p>`);
+    url = `https://www.here.com/directions/drive/start:${geoPosition.coords.latitude},${geoPosition.coords.longitude}/end:${html.geometry.coordinates[1]},${html.geometry.coordinates[0]}`
+    marker.setData(`<h5 style="width: 10em;">${html.properties.NombreComercial}</h5> <img src="${imagen}" width="100px;"/> <p><a href=" ${url} ">Cómo llegar</a></p><p>${html.properties.Dirección}</p> <p><i>${telefono}</i></p> <p><i>${cocina}</i></p>`);
     marker.id = "marker";
     group.addObject(marker);
 }
