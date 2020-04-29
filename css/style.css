@@ -8346,9 +8346,9 @@ a[data-toggle="collapse"] {
   }
 
   #map {
-    height: 100%;
-    width: 100%;
-    position: absolute;
+    height:95.7%;
+    width:100%;
+    position: relative;
  }
  
   #OutputId {
@@ -8369,4 +8369,11 @@ a[data-toggle="collapse"] {
 
   #mymenu{
     font-size: large;
+  }
+
+  #titulomid{
+    color: #c12923;
+    font-weight: bolder;
+    font-size: large;
+    font-stretch: extra-expanded !important;
   }

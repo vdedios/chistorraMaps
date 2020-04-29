@@ -43,24 +43,26 @@
                 <br>          
                   <li>
                       <span id="tipos"> Transporte:<br> </tipos>
-                      <label>
-                        <input type="radio" name="routing-mode" id="bike" value="bike">
-                         <span  id="fa_transport">
-                          <i class="fas fa-bicycle"></i>
-                          </span>
-                      </label>
-                      <label>
-                      <input type="radio" name="routing-mode" id="car" value="car">
-                      <span id="fa_transport">
-                      <i class="fas fa-car"></i>
-                      </span>
-                      </label>
-                      <label>
-                      <input type="radio" name="routing-mode" id="walk" value="walk">
-                      <span id="fa_transport">
-                        <i class="fas fa-walking"></i>
-                      </span>
-                      </label>
+                      <div style="display:flex;justify-content:space-around">
+                        <label>
+                            <input type="radio" name="routing-mode" id="bike" value="bike">
+                            <span  id="fa_transport">
+                            <i class="fas fa-bicycle"></i>
+                            </span>
+                        </label>
+                        <label>
+                        <input type="radio" name="routing-mode" id="car" value="car">
+                        <span id="fa_transport">
+                        <i class="fas fa-car"></i>
+                        </span>
+                        </label>
+                        <label>
+                        <input type="radio" name="routing-mode" id="walk" value="walk">
+                        <span id="fa_transport">
+                            <i class="fas fa-walking"></i>
+                        </span>
+                        </label>
+                      </div>
                   </li>    
                 
                 <li>
@@ -74,40 +76,26 @@
           document.getElementById('textInput').value=val; 
               
         } </script>
-                  </div>
-                </li>
-                <li>
-                   <div class="form-group">
-                  <span id="tipos"><label for="sel1">Tipo de comida:</label></span>
-                  <select class="form-control" id="sel1">
-                    <option>Mexicana</option>
-                    <option>Española</option>
-                    <option>Japones</option>
-                    <option>Americana</option>
-                  </select>
-</div>
-
-                </li>
-	            </ul>
+        </div>
+            </li>
             <li>
-              <a href="tarjetas.html" id="mymenu" ><i class="fas fa-list" style="margin-right:15px"></i> Listado</a>
-	          </li>
-	          </li>
-	          <li>
-              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  id="mymenu"><i class="fas fa-percent" style="margin-right:15px" ></i> ¡Ofertas!</a>
-              <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">Ruta de la tapa</a>
-                </li>
-                <li>
-                    <a href="#">Menu del dia</a>
-                </li>
-                <li>
-                    <a href="#">GIStorras Club</a>
-                </li>
-              </ul>
-	          </li>
+                <div class="form-group">
+                <span id="tipos"><label for="sel1">Tipo de comida:</label></span>
+                <select class="form-control" id="sel1">
+                <option selected>Elige tu estilo</option>
+                <option>Mexicana</option>
+                <option>Española</option>
+                <option>Japones</option>
+                <option>Americana</option>
+            </select>
+        </div>
 	        </ul>
+                <li>
+                    <a href="tarjetas.html" id="mymenu" ><i class="fas fa-list" style="margin-right:15px"></i> Listado</a>
+	            </li>
+	            <li>
+                <a href="#pageSubmenu"  aria-expanded="false"  id="mymenu"><i class="fas fa-utensils" style="margin-right:15px" ></i> Ruta de la tapa</a>
+               </li>
 	        <div class="footer">
 	        	<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <i class="icon-heart" aria-hidden="true"></i>GIStorras team.</a>
@@ -119,39 +107,26 @@
 
         <!-- Page Content  -->
       <div id="content" class="p-0 p-md-0">
-        
         <nav>
-          <div style="z-index:4;background-color:#1d1919">
+          <div style="z-index:4;background-color:#1d1919" class="d-flex">
 
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
               <i class="fa fa-bars"></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
-
-<!--           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-              </ul>
-            </div>
---> 
+            <div class="mx-auto order-0">
+        <a class="mx-auto" id="titulomid" href="#"><img src="images/gistorras_txt.PNG"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+           </div>
         </nav>
-
         <div id="map">
             <script src="index.js" type="text/javascript"></script>
         </div>
       </div>
-		</div>
+      
+	</div>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.js"></script>
