@@ -73,7 +73,7 @@ if(navigator.geolocation) {
             removeObjectById("marker", map);
             displayDATA(1, map, circle, group);
         }
-    /*------------------------NO GEO LOCALIZATION-------------------------------------*/
+        /*------------------------NO GEO LOCALIZATION-------------------------------------*/
     }, function(){
         map.setCenter(initPos);
         var circle = 0;
@@ -82,7 +82,7 @@ if(navigator.geolocation) {
         $$('#range').forEach(c => c.onchange = () => {
             removeObjectById("marker", map);
             if (circle){
-                 circle.setRadius(document.getElementById('range').value); 
+                circle.setRadius(document.getElementById('range').value); 
                 map.getViewModel().setLookAtData({bounds: circle.getBoundingBox()});
                 displayDATA(1, map, circle, group);
             }
@@ -130,8 +130,31 @@ function distanceCoords(lat1,lon1,lat2,lon2) {
 }
 
 function addMarkerToGroup(coordinate, html, group) {
-    console.log(html.properties)
-    var evIcon = new H.map.Icon('img/bar.png');
+    //console.log(html.properties)
+    if (html.properties.ruta_tapa == "1"){
+        var evIcon = new H.map.Icon('img/marker_rutaTapa.png');
+    }
+    else{
+        if (html.properties.cocina == "TAPAS"){
+            var evIcon = new H.map.Icon('img/marker_tapas.png');
+        }
+        else if (html.properties.cocina == "POSTRES"){
+            var evIcon = new H.map.Icon('img/marker_postre.png');
+        }
+        else if (html.properties.cocina == "AMERICANA"){
+            var evIcon = new H.map.Icon('img/marker_americana.png');
+        }
+        else if (html.properties.cocina == "INTERNACIONAL"){
+            var evIcon = new H.map.Icon('img/marker_internacional.png');
+        }
+        else if (html.properties.cocina == "GALLEGA"){
+            var evIcon = new H.map.Icon('img/marker_gallega.png');
+        }
+        else if (html.properties.cocina == "ASTURIANA"){
+            var evIcon = new H.map.Icon('img/marker_asturiana.png');
+        }
+    }
+    console.log(html.properties.cocina);
     var marker = new H.map.Marker(coordinate, { icon: evIcon });
     // add custom data to the marker
     if (html.properties.imagen)
@@ -143,7 +166,7 @@ function addMarkerToGroup(coordinate, html, group) {
     marker.setData(`<h5 style="width: 10em;">${html.properties.NombreComercial}</h5> <p>${html.properties.Dirección}</p> <p>${html.properties.cocina}</p>`);
     marker.id = "marker";
     group.addObject(marker);
-  }
+}
 
 function addMarker(newPos,respData, map){
     var evIcon = new H.map.Icon('img/bar.png');
@@ -163,7 +186,7 @@ function addInfoBubble(map){
     }, false);
 }
 function displayDATA(id, map, circle, group){
-    let url = 'https://xyz.api.here.com/hub/spaces/s80VI0RA/search?limit=5000&clientId=cli&access_token=ABXqDStGTXGkWJBAvHqoSQA';
+    let url = 'https://xyz.api.here.com/hub/spaces/E6c8u3US/search?limit=5000&clientId=cli&access_token=AOzek1XSRkWM9CxFWw47egA';
     fetch(url, {
         "method": "GET"
     }).then(response => response.json()
