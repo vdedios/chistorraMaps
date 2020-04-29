@@ -143,7 +143,7 @@ function addMarkerToGroup(coordinate, html, group) {
     else
         cocina = "Vegetariana"
     telefono = "91 580 42 60";
-    marker.setData(`<h5 style="width: 10em;">${html.properties.NombreComercial}</h5> <img src="${imagen}" /> <p>${html.properties.Dirección}</p> <i>${telefono}</i> <i>${cocina}</i>`);
+    marker.setData(`<h5 style="width: 10em;">${html.properties.NombreComercial}</h5> <img src="${imagen}" width="100px;"/> <p>${html.properties.Dirección}</p> <i>${telefono}</i> <i>${cocina}</i>`);
     marker.id = "marker";
     group.addObject(marker);
   }
