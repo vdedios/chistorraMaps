@@ -140,7 +140,10 @@ function addMarkerToGroup(coordinate, html, group) {
         imagen = "assets/images/default.png"
     if (html.properties.cocina)
         cocina = html.properties.cocina
-    marker.setData(`<h5 style="width: 10em;">${html.properties.NombreComercial}</h5> <p>${html.properties.Dirección}</p> <p>${html.properties.cocina}</p>`);
+    else
+        cocina = "Vegetariana"
+    telefono = "91 580 42 60";
+    marker.setData(`<h5 style="width: 10em;">${html.properties.NombreComercial}</h5> <p>${html.properties.Dirección}</p> <i>${telefono}</i> <i>${cocina}</i>`);
     marker.id = "marker";
     group.addObject(marker);
   }
@@ -163,7 +166,7 @@ function addInfoBubble(map){
     }, false);
 }
 function displayDATA(id, map, circle, group){
-    let url = 'https://xyz.api.here.com/hub/spaces/s80VI0RA/search?limit=5000&clientId=cli&access_token=ABXqDStGTXGkWJBAvHqoSQA';
+    let url = 'https://xyz.api.here.com/hub/spaces/E6c8u3US/search?limit=5000&clientId=cli&access_token=AOzek1XSRkWM9CxFWw47egA';
     fetch(url, {
         "method": "GET"
     }).then(response => response.json()
