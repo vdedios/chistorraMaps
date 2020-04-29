@@ -45,7 +45,6 @@ if(navigator.geolocation) {
         /*------------------------RESTAURANT DATA-------------------------------------*/
         // Displaying data
         var group = new H.map.Group();
-
         map.addObject(group);
         displayDATA(1, map, circle, group);
         addInfoBubble(map);
@@ -54,6 +53,7 @@ if(navigator.geolocation) {
         //Modifying range and display data  with slider data
         $$('#range').forEach(c => c.onchange = () => {
             removeObjectById("marker", map);
+            removeObjectById("marker", group);
             circle.setRadius(document.getElementById('range').value); 
             map.getViewModel().setLookAtData({bounds: circle.getBoundingBox()});
             displayDATA(1, map, circle, group);
@@ -67,10 +67,9 @@ if(navigator.geolocation) {
             markerPosition = {lat: coordsNEW.Latitude, lng: coordsNEW.Longitude};
             await map.getViewModel().setLookAtData({position: markerPosition});
             removeObjectById("marker", map);
+            removeObjectById("marker", group);
             posMarker = new H.map.Marker(markerPosition,{icon: icon});
-            //removeObjectById("marker");
             circle.setCenter(markerPosition); 
-            removeObjectById("marker", map);
             displayDATA(1, map, circle, group);
         }
         /*------------------------NO GEO LOCALIZATION-------------------------------------*/
@@ -80,7 +79,10 @@ if(navigator.geolocation) {
         displayDATA(0, map, "");
         //Modifying range and display data  with slider data
         $$('#range').forEach(c => c.onchange = () => {
+            var group = new H.map.Group();
+            map.addObject(group);
             removeObjectById("marker", map);
+            removeObjectById("marker", group);
             if (circle){
                 circle.setRadius(document.getElementById('range').value); 
                 map.getViewModel().setLookAtData({bounds: circle.getBoundingBox()});
@@ -93,15 +95,16 @@ if(navigator.geolocation) {
         async function addStartingMarker() {
             const startAddress = document.getElementById('start').value;
             const coordsNEW = await geocode(startAddress);
+            var group = new H.map.Group();
+            map.addObject(group);
             markerPosition = {lat: coordsNEW.Latitude, lng: coordsNEW.Longitude};
             await map.getViewModel().setLookAtData({position: markerPosition});
             removeObjectById("marker", map);
+            removeObjectById("marker", group);
             if (!circle)
                 circle = newCircle(markerPosition, map);
             posMarker = new H.map.Marker(markerPosition,{icon: icon});
-            //removeObjectById("marker");
             circle.setCenter(markerPosition); 
-            removeObjectById("marker", map);
             displayDATA(1, map, circle, group);
         }
     }
@@ -171,13 +174,6 @@ function addMarkerToGroup(coordinate, html, group) {
     group.addObject(marker);
 }
 
-function addMarker(newPos,respData, map){
-    var evIcon = new H.map.Icon('img/bar.png');
-    evMarker = new H.map.Marker(newPos,{ icon: evIcon });
-    evMarker.setData(respData);
-    evMarker.id = "marker";
-    map.addObject(evMarker);
-}
 function addInfoBubble(map){
     map.addEventListener('tap', function (evt) {
         var bubble =  new H.ui.InfoBubble(evt.target.getGeometry(), {
