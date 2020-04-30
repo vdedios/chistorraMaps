@@ -22,7 +22,7 @@ body {
 }
 
 #cardImage{
-    width : 100%;
+    width : 100px;
 }
 #cardDecription{
     color : white;
@@ -44,7 +44,7 @@ body {
     align-items : center;
 }
 #cardPriceImage{
-    width : 100%;
+    width : 100px;
 }
 #cardPricePrice{
 }
