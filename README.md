@@ -2,7 +2,7 @@
 <h1 align="center"><code>🗺 🍲 Gistorras : A food recommendation webapp made with map HERE tools ➡️ 42Madrid map-Hackaton</code></h1>
 <div align="center">
     <sub>
-        <h3>👉 To visit the website click <a href="https://vdedios.github.io/chistorraMaps/" target="_blank">here!</a></h3>
+        <h2>👉 To visit the website click <a href="https://vdedios.github.io/chistorraMaps/" target="_blank">here!</a></h2>
     </sub>
 <div>
     <h3 align="center">Desktop version</h3>
