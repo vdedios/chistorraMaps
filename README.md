@@ -17,7 +17,7 @@
 </div>
 
 ## Features
-<ul style= "list-style: none;">
+<ul style="list-style: none;">
   <li>Map integration with HERE api</li>
   <li>Isolines calculation</li>
   <li>Info filtering</li>
