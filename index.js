@@ -65,8 +65,9 @@ if(navigator.geolocation) {
         /*------------------------RESTAURANT DATA-------------------------------------*/
         // Displaying data
         var group = new H.map.Group();
+        let option = 0;
         map.addObject(group);
-        displayDATA(1, map, circle, group);
+        displayDATA(1, map, circle, group, document.getElementById('sel1').selectedIndex);
         addInfoBubble(map);
 
         /*-------------------MODIFYING DATA FROM DOM----------------------------*/
@@ -76,22 +77,37 @@ if(navigator.geolocation) {
             removeObjectById("marker", group);
             circle.setRadius(document.getElementById('range').value); 
             map.getViewModel().setLookAtData({bounds: circle.getBoundingBox()});
-            displayDATA(1, map, circle, group);
+            displayDATA(1, map, circle, group, document.getElementById('sel1').selectedIndex);
         });
         //Get new address from input
         document.getElementById('change-start').onclick = addStartingMarker;
-        addStartingMarker();
-        async function addStartingMarker() {
+        addStartingMarker(option);
+        async function addStartingMarker(option) {
             const startAddress = document.getElementById('start').value;
             const coordsNEW = await geocode(startAddress);
             markerPosition = {lat: coordsNEW.Latitude, lng: coordsNEW.Longitude};
             await map.getViewModel().setLookAtData({position: markerPosition});
             removeObjectById("marker", map);
             removeObjectById("marker", group);
+            circle.setCenter(markerPosition); 
+            posMarker = new H.map.Marker(markerPosition,{icon: icon});
+            posMarker.id = "myPos";
+            map.addObject(posMarker);
+            displayDATA(1, map, circle, group, document.getElementById('sel1').selectedIndex);
+        }
+
+        //Food filtering
+        document.getElementById('sel1').onchange = filterFoodSelection;
+        option = filterFoodSelection();
+        function filterFoodSelection(){
+            removeObjectById("marker", map);
+            removeObjectById("marker", group);
             posMarker = new H.map.Marker(markerPosition,{icon: icon});
             circle.setCenter(markerPosition); 
-            displayDATA(1, map, circle, group);
+            displayDATA(1, map, circle, group, document.getElementById('sel1').selectedIndex);
+            return document.getElementById('sel1').selectedIndex;
         }
+
         /*------------------------NO GEO LOCALIZATION-------------------------------------*/
     }, function(){
         var icon = new H.map.Icon('img/home.png');
@@ -101,8 +117,9 @@ if(navigator.geolocation) {
         map.setCenter(initPos);
         var circle = 0;
         var group = new H.map.Group();
+        let option = 0;
         map.addObject(group);
-        displayDATA(0, map, "", group);
+        displayDATA(0, map, "", group, option);
         //Modifying range and display data  with slider data
         $$('#range').forEach(c => c.onchange = () => {
             if (circle){
@@ -110,7 +127,7 @@ if(navigator.geolocation) {
                 removeObjectById("marker", group);
                 circle.setRadius(document.getElementById('range').value); 
                 map.getViewModel().setLookAtData({bounds: circle.getBoundingBox()});
-                displayDATA(1, map, circle, group);
+                displayDATA(1, map, circle, group, document.getElementById('sel1').selectedIndex);
             }
         });
         //Get new address from input
@@ -126,10 +143,10 @@ if(navigator.geolocation) {
             removeObjectById("marker", map);
             removeObjectById("marker", group);
             circle.setCenter(markerPosition); 
-            displayDATA(1, map, circle, group);
             posMarker = new H.map.Marker(markerPosition,{icon: icon});
             posMarker.id = "myPos";
             map.addObject(posMarker);
+            displayDATA(1, map, circle, group, document.getElementById('sel1').selectedIndex);
         }
     }
     );
@@ -250,7 +267,7 @@ function addInfoBubble(map){
             document.getElementById("cardInfo").style.display = "none";
     }, false);
 }
-function displayDATA(id, map, circle, group){
+function displayDATA(id, map, circle, group, option){
     let url = 'https://xyz.api.here.com/hub/spaces/E6c8u3US/search?limit=5000&clientId=cli&access_token=AOzek1XSRkWM9CxFWw47egA';
     fetch(url, {
         "method": "GET"
@@ -261,15 +278,27 @@ function displayDATA(id, map, circle, group){
         for (i=0; i < response.features.length; i++){
             //console.log(response.features[i])
             if (id){
+                console.log(option);
                 if (circle.getRadius() > distanceCoords(response.features[i].geometry.coordinates[1],
                     response.features[i].geometry.coordinates[0],
                     markerPosition.lat, markerPosition.lng)){
+                    /*
                     newPos= ({lat: response.features[i].geometry.coordinates[1], lng: response.features[i].geometry.coordinates[0]});
                     respData= response.features[i];
                     addMarkerToGroup(newPos, respData, group);
-                    //--------NOTA--------------------
-                    // Aqui es donde se tienen que ir creando las tarjetas
-                    //--------------------------------
+                    */
+                    if ((option == 1 && response.features[i].properties.cocina == 'ASTURIANA') ||
+                        (option == 2 && response.features[i].properties.cocina == 'GALLEGA') ||
+                        (option == 3 && response.features[i].properties.cocina == 'INTERNACIONAL') ||
+                        (option == 4 && response.features[i].properties.cocina == 'AMERICANA') ||
+                        (option == 5 && response.features[i].properties.cocina == 'POSTRES') ||
+                        (option == 6 && response.features[i].properties.cocina == 'TAPAS') ||
+                        (option == 7 && response.features[i].properties.ruta_tapa == '1') ||
+                        (option == 0)){
+                        newPos= ({lat: response.features[i].geometry.coordinates[1], lng: response.features[i].geometry.coordinates[0]});
+                        respData= response.features[i];
+                        addMarkerToGroup(newPos, respData, group);
+                    }
                 }
             }
             //Default when no device position
