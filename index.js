@@ -177,15 +177,15 @@ function addMarkerToGroup(coordinate, html, group) {
     marker.setData(`<img id="cardImage"src="${imagen}">
             <div id="cardDecription">
                 <h5 id="cardDescriptionTitle">${html.properties.NombreComercial}</h5>
-                <p class="cardDescriptionAddress">${html.properties.Dirección}</p>
+                <p id="cardDescriptionAddress">${html.properties.Dirección}</p>
                 <p class="cardDescriptionInfo"><i>${telefono}</i></p>
+                <div id="cardPrice">
+                    <a id="cardPriceAnchor" href=" ${url} ">
+                        <img id="cardPriceImage" src="img/directions.png"></img>
+                    </a>
+                    <p id="cardPricePrice">€€</p>
+                </div>
                 <p class="cardDescriptionInfo"><i>${cocina}</i></p>
-            </div>
-            <div id="cardPrice">
-                <a id="cardPriceAnchor" href=" ${url} ">
-                    <img id="cardPriceImage" src="img/directions.png"></img>
-                </a>
-                <p id="cardPricePrice">€€</p>
             </div>`);
     /*
     marker.setData(`
