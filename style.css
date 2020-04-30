@@ -64,6 +64,7 @@ body {
     background-color: #1d1919;
     box-shadow : 0 6px 12px 0 rgba(0, 0, 0, 0.01), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
     margin : 0 !important;
+    transition: height 1s;
 }
 @media only screen and (min-width: 991px) {
     #cardInfo{
@@ -109,3 +110,31 @@ body {
         width : 20px;
     }
 }
+  #fa_euro{
+    font-size:20px;
+    margin: 8 px;
+  }
+  #fa_precio_low{
+    color: #13f626;
+  }
+  #fa_precio_mid{
+    color: #f8b72f;
+  }
+  #fa_precio_high{
+    color: #c12923;
+  }
+  [type=radio]:checked + [id=fa_precio_low] {
+    box-shadow: 0 0 0 1px  #464444;
+    background-color: #f8f4f42f;
+    border-radius: 5px;;
+  }
+  [type=radio]:checked + [id=fa_precio_mid] {
+    box-shadow: 0 0 0 1px  #c12923;
+    background-color: #f8f4f42f;
+    border-radius: 5px;
+  }
+  [type=radio]:checked + [id=fa_precio_high] {
+    box-shadow: 0 0 0 1px  #c12923;
+    border-radius: 5px;;
+    background-color: #f8f4f42f;
+  }

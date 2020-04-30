@@ -76,21 +76,47 @@
                                 </li>
                                 <li>
                                     <div class="form-group">
-                                        <span id="tipos"><label for="sel1">Tipo de comida:</label></span>
-                                        <select class="form-control" id="sel1">
-                                            <option selected>Elige tu estilo</option>
-                                            <option>Asturiana</option>
-                                            <option>Gallega</option>
-                                            <option>Internacional</option>
-                                            <option>Americana</option>
-                                            <option>Postres</option>
-                                            <option>Tapas</option>
-                                        </select>
+                                        <span id="tipos"> Precio:</span>
+                                        <div style="display:flex;justify-content:space-around">
+                                            <label id="fa_euro">
+                                                <input type="radio" name="routing-mode" id="bike" value="barato">
+                                                <span  id="fa_precio_low">
+                                                    <i class="fas fa-euro"></i>
+                                                </span>
+                                            </label>
+                                            <label id="fa_euro">
+                                                <input type="radio" name="routing-mode" id="car" value="medio">
+                                                <span id="fa_precio_mid">
+                                                    <i class="fas fa-euro"></i>
+                                                    <i class="fas fa-euro"></i>
+                                                </span>
+                                            </label>
+                                            <label id="fa_euro">
+                                                <input type="radio" name="routing-mode" id="walk" value="caro">
+                                                <span id="fa_precio_high">
+                                                    <i class="fas fa-euro"></i>
+                                                    <i class="fas fa-euro"></i>
+                                                    <i class="fas fa-euro"></i>
+                                                </span>
+                                            </label>
+                                        </div>
                                     </div>
+                                </li>
+                                <li>
+                                    <li>
+                                        <div class="form-group">
+                                            <span id="tipos"><label for="sel1">Tipo de comida:</label></span>
+                                            <select class="form-control" id="sel1">
+                                                <option selected>Elige tu estilo</option>
+                                                <option>Asturiana</option>
+                                                <option>Gallega</option>
+                                                <option>Internacional</option>
+                                                <option>Americana</option>
+                                                <option>Postres</option>
+                                                <option>Tapas</option>
+                                            </select>
+                                        </div>
                             </ul>
-                            <li>
-                                <a href="tarjetas.html" id="mymenu" ><i class="fas fa-list" style="margin-right:15px"></i> Listado</a>
-                            </li>
                             <li>
                                 <a href="#pageSubmenu"  aria-expanded="false"  id="mymenu"><i class="fas fa-utensils" style="margin-right:15px" ></i> Ruta de la tapa</a>
                             </li>
@@ -121,7 +147,7 @@
                     <div id="cardInfo">
                     </div>
                 </div>
-            </div>
+                    </div>
             </div>
             <script src="js/jquery.min.js"></script>
             <script src="js/popper.js"></script>
