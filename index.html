@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
+    
     <script src="https://kit.fontawesome.com/57b396236e.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/tangram/dist/tangram.min.js"></script>
@@ -20,10 +21,10 @@
     <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css"/>
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
   </head>
-  <body>	
-		<div class="wrapper d-flex align-items-stretch">
+  <body>
+	  <div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
-				<div class="p-4 pt-5">    
+				<div class="p-4">    
 		  		<a href="#" class="img logo mb-8" style="background-image: url(images/gistorras_sinfondo.png);"></a>
           <br>
           <label for="start" id="tipos">Indica la dirección</label>
@@ -32,63 +33,96 @@
               <button id="change-start" class="btn btn-primary">Go!</button>
             </div>
 	        <ul class="list-unstyled components mb-5">
-            <p>
+          <br>
 	          <li class="active">
 	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle" id="mymenu" ><i class="fas fa-filter" style="margin-right:15px" ></i>    Filtrar</a>
 	            <ul class="collapse show list-unstyled" id="homeSubmenu">
-              <br>          
-                <li>
-                  <span id="tipos"> Transporte:<br> </span>
-                    <div style="display:flex;justify-content:space-around">
-                    <label>
-                      <input type="radio" name="routing-mode" id="bike" value="bike">
-                        <span  id="fa_transport">
-                          <i class="fas fa-bicycle"></i>
-                        </span>
-                    </label>
-                    <label>
-                      <input type="radio" name="routing-mode" id="car" value="car">
-                        <span id="fa_transport">
-                        <i class="fas fa-car"></i>
-                        </span>
-                    </label>
-                    <label>
-                      <input type="radio" name="routing-mode" id="walk" value="walk">
-                      <span id="fa_transport">
-                          <i class="fas fa-walking"></i>
-                      </span>
-                    </label>
-                  </div>
-                </li>    
-                <li>
-                 <span id="tipos"> Distancia:</span>
+                <br>          
+                  <li>
+                    <span id="tipos"> Transporte:<br> </span>
+                      <div style="display:flex;justify-content:space-around">
+                        <label>
+                          <input type="radio" name="routing-mode" id="bike" value="bike">
+                            <span  id="fa_transport">
+                              <i class="fas fa-bicycle"></i>
+                            </span>
+                        </label>
+                        <label>
+                          <input type="radio" name="routing-mode" id="car" value="car">
+                            <span id="fa_transport">
+                            <i class="fas fa-car"></i>
+                            </span>
+                        </label>
+                        <label>
+                          <input type="radio" name="routing-mode" id="walk" value="walk">
+                          <span id="fa_transport">
+                              <i class="fas fa-walking"></i>
+                          </span>
+                        </label>
+                      </div>
+                  </li>    
+                  <li>
+                    <span id="tipos"> Distancia:</span>
                     <div class="slidecontainer">
-                    <input type="range" min="10" max="4000" value="500" class="slider" id="range" oninput="OutputId.value = range.value">
+                      <input type="range" min="10" max="4000" value="500" class="slider" id="range" oninput="OutputId.value = range.value">
+                      <br>
+                      <output name="OutputName" id="OutputId">50</output> Metros
+                      <script>
+                      function updateTextInput(val) {
+                      document.getElementById('textInput').value=val;} 
+                      </script>
+                    </div>
+                  </li>
                   <br>
-                   <output name="OutputName" id="OutputId">50</output> Metros
-                  <script>
-                  function updateTextInput(val) {
-                  document.getElementById('textInput').value=val;} 
-                  </script>
-                </div>
-              </li>
-              <li>
-                <div class="form-group">
-                  <span id="tipos"><label for="sel1">Tipo de comida:</label></span>
-                  <select class="form-control" id="sel1">
-                    <option selected>Elige tu estilo</option>
-                    <option>Asturiana</option>
-                    <option>Gallega</option>
-                    <option>Internacional</option>
-                    <option>Americana</option>
-                    <option>Postres</option>
-                    <option>Tapas</option>
-                  </select>
-                </div>
+                  <li>
+                    <div class="form-group">
+                      <span id="tipos"> Precio:</span>
+                      <div style="display:flex;justify-content:space-around">
+                        <label>
+                          <input type="radio" name="routing-mode" id="bike" value="bike">
+                            <span  id="fa_precio_low">
+                              <i class="fas fa-dollar"></i>
+                            </span>
+                        </label>
+                        <label>
+                          <input type="radio" name="routing-mode" id="car" value="car">
+                            <span id="fa_precio_mid">
+                             <i class="fas fa-dollar"></i>
+                              <i class="fas fa-dollar"></i>
+                            </span>
+                        </label>
+                        <label>
+                          <input type="radio" name="routing-mode" id="walk" value="walk">
+                          <span id="fa_precio_high">
+                               <i class="fas fa-dollar"></i>
+                                <i class="fas fa-dollar"></i>
+                                 <i class="fas fa-dollar"></i>
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </li>
+                <li>
+                  <div class="form-group">
+                    <span id="tipos"><label for="sel1">Tipo de comida:</label></span>
+                    <select class="form-control" id="sel1">
+                      <option selected>Elige tu estilo</option>
+                      <option>Asturiana</option>
+                      <option>Gallega</option>
+                      <option>Internacional</option>
+                      <option>Americana</option>
+                      <option>Postres</option>
+                      <option>Tapas</option>
+                      <option>Vegetariana</option>
+                    </select>
+                  </div>
+                </li>
 	            </ul>
+              <!--
               <li>
                   <a href="tarjetas.html" id="mymenu" ><i class="fas fa-list" style="margin-right:15px"></i> Listado</a>
 	            </li>
+              -->
 	            <li>
                 <a href="#pageSubmenu"  aria-expanded="false"  id="mymenu"><i class="fas fa-utensils" style="margin-right:15px" ></i> Ruta de la tapa</a>
               </li>
@@ -100,29 +134,27 @@
 	      </div>
     	</nav>
         <!-- Page Content  -->
-      <div id="content" class="p-0 p-md-0">
+      <div id="content" class="p-0 p-md-0 container-fluid" on="map.getViewPort().resize()">
         <nav>
           <div style="z-index:4;background-color:#1d1919" class="d-flex">
-            <button type="button" id="sidebarCollapse" class="btn btn-primary">
-              <i class="fa fa-bars"></i>
+            <button type="button"  id="sidebarCollapse"  class="btn btn-primary"  >
+              <i class="fa fa-bars" ></i>
               <span class="sr-only">Toggle Menu</span>
             </button>
             <div class="mx-auto order-0">
-        <a class="mx-auto" id="titulomid" href="#"><img src="images/gistorras_txt.PNG"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-           </div>
+              <a class="mx-auto" id="titulomid" href="#"><img src="images/gistorras_txt.PNG"></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse"  data-target=".dual-collapse2">
+                S<span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
         </nav>
-        <div id="map">
-            <script src="index.js" type="text/javascript"></script>
-        </div>
+      <div id="map" class="flex">
+          <script src="index.js" type="text/javascript"></script>
       </div>
-      
-	</div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
+    </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
   </body>
 </html>

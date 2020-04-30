@@ -14,9 +14,13 @@ var map = new H.Map(
         heading: 180,
         tilt: 0
     });
+    
 var ui = H.ui.UI.createDefault(map, defaultLayers);
 var mapEvents = new H.mapevents.MapEvents(map);
 var behavior = new H.mapevents.Behavior(mapEvents);
+
+window.addEventListener('resize', () => map.getViewPort().resize());
+
 
 //--------NOTA-------------------
 //Si no carga la geolocalización, hay posición por default

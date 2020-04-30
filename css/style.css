@@ -8344,14 +8344,16 @@ a[data-toggle="collapse"] {
 
   #dolar {
     font-size: large;
-    font-weight: 500;
+    margin:4px;
     color: green;
   }
 
   #map {
-    height:95.7%;
+    height:95%;
     width:100%;
     position: relative;
+    z-index: 1;
+
  }
  
   #OutputId {
@@ -8379,4 +8381,29 @@ a[data-toggle="collapse"] {
     font-weight: bolder;
     font-size: large;
     font-stretch: extra-expanded !important;
+  }
+  
+  #food-card{
+    position: absolute;
+    z-index: 2;
+    bottom:0;
+    border-color: black;
+  }
+
+  #fa_precio_low{
+    font-size: 20px; 
+    color: #15da0e;
+    margin: 8px;
+  }
+
+  #fa_precio_mid{
+    font-size: 20px; 
+    color: #f68713;
+    margin: 8px;
+  }
+
+  #fa_precio_high{
+    font-size: 20px; 
+    color: #c12923;
+    margin: 8px;
   }

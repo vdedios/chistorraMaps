@@ -13,7 +13,8 @@
 	fullHeight();
 
 	$('#sidebarCollapse').on('click', function () {
-      $('#sidebar').toggleClass('active');
+	  $('#sidebar').toggleClass('active');
+		map.getViewPort().resize();
   });
 
 })(jQuery);
