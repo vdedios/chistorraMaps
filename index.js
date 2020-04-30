@@ -1,5 +1,5 @@
 var platform = new H.service.Platform({
-    apikey: "eD_IzP_4psnri8dg2gg3-AdnamvR5vriLzfDccLfW1A"
+    apikey: "VJoA7tGmC3RqiMzEPFBaLmfsHdU2GnJBRgD88cBBuwA"
 });
 const $$ = qq => document.querySelectorAll(qq);
 // Obtain the default map types from the platform object:
@@ -161,7 +161,7 @@ function addMarkerToGroup(coordinate, html, group) {
             var evIcon = new H.map.Icon('img/marker_asturiana.png');
         }
     }
-    console.log(html.properties.cocina);
+    //console.log(html.properties.cocina);
     var marker = new H.map.Marker(coordinate, { icon: evIcon });
     // add custom data to the marker
     if (html.properties.imagen)
@@ -174,18 +174,62 @@ function addMarkerToGroup(coordinate, html, group) {
         cocina = "Vegetariana"
     telefono = "91 580 42 60";
     url = `https://www.here.com/directions/drive/start:${geoPosition.coords.latitude},${geoPosition.coords.longitude}/end:${html.geometry.coordinates[1]},${html.geometry.coordinates[0]}`
-    marker.setData(`<h5 style="width: 10em;">${html.properties.NombreComercial}</h5> <img src="${imagen}" width="100px;"/> <p><a href=" ${url} ">Cómo llegar</a></p><p>${html.properties.Dirección}</p> <p><i>${telefono}</i></p> <p><i>${cocina}</i></p>`);
+    marker.setData(`<img id="cardImage"src="${imagen}">
+            <div id="cardDecription">
+                <h5 id="cardDescriptionTitle">${html.properties.NombreComercial}</h5>
+                <p class="cardDescriptionAddress">${html.properties.Dirección}</p>
+                <p class="cardDescriptionInfo"><i>${telefono}</i></p>
+                <p class="cardDescriptionInfo"><i>${cocina}</i></p>
+            </div>
+            <div id="cardPrice">
+                <a id="cardPriceAnchor" href=" ${url} ">
+                    Ver ruta
+                    <img id="cardPriceImage" src="img/directions.png"></img>
+                </a>
+                <p id="cardPricePrice">€€</p>
+            </div>`);
+    /*
+    marker.setData(`
+    <div class="card mb-3" style="width: 20vw;" id="food-card">
+      <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="${imagen}" class="card-img" alt="...">
+          </div>
+          <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">${html.properties.NombreComercial}</h5>
+            <p class="card-text">${html.properties.Dirección}</p>
+            <p class="card-text">${telefono}</p>
+            <p class="card-text">
+            <script>
+              var precio = "<i class='fas fa-dollar-sign' id='dolar'></i>" ;
+              document.write(precio.repeat(2));
+            </script>
+            </p>
+          <p class="card-text"><medium class="text-muted">${cocina}</small></p>
+        </div>
+        </div>
+      </div>
+    </div>`);
+    */
     marker.id = "marker";
     group.addObject(marker);
 }
 function addInfoBubble(map){
     map.addEventListener('tap', function (evt) {
-        var bubble =  new H.ui.InfoBubble(evt.target.getGeometry(), {
-            // read custom data
-            content: evt.target.getData()
-        });
-        // show info bubble
-        ui.addBubble(bubble);
+        if (evt.target.Tg)
+        {
+            console.log(evt.target)
+            if (evt.target.getData())
+            {
+                document.getElementById("cardInfo").innerHTML = evt.target.getData();
+                document.getElementById("cardInfo").style.display = "flex";
+            }
+            else
+                document.getElementById("cardInfo").style.display = "none";
+        }
+        else
+            document.getElementById("cardInfo").style.display = "none";
     }, false);
 }
 function displayDATA(id, map, circle, group){
