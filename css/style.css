@@ -8407,3 +8407,7 @@ a[data-toggle="collapse"] {
     color: #c12923;
     margin: 8px;
   }
+  [type=radio]:checked + [id=fa_precio_low] {
+    box-shadow: 0 0 0 2px  #c12923;
+    background-color: #c12923;
+  }
