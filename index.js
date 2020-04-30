@@ -183,7 +183,6 @@ function addMarkerToGroup(coordinate, html, group) {
             </div>
             <div id="cardPrice">
                 <a id="cardPriceAnchor" href=" ${url} ">
-                    Ver ruta
                     <img id="cardPriceImage" src="img/directions.png"></img>
                 </a>
                 <p id="cardPricePrice">€€</p>
