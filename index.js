@@ -1,6 +1,21 @@
 var platform = new H.service.Platform({
     apikey: "VJoA7tGmC3RqiMzEPFBaLmfsHdU2GnJBRgD88cBBuwA"
 });
+
+var mode = "walk";
+
+document.getElementById('car').addEventListener('click', function (){
+    mode = 'drive';
+})
+
+document.getElementById('bike').addEventListener('click', function (){
+    mode = 'bike';
+})
+
+document.getElementById('walk').addEventListener('click', function (){
+    mode = 'walk';
+})
+
 const $$ = qq => document.querySelectorAll(qq);
 // Obtain the default map types from the platform object:
 var defaultLayers = platform.createDefaultLayers();
@@ -18,6 +33,10 @@ var ui = H.ui.UI.createDefault(map, defaultLayers);
 var mapEvents = new H.mapevents.MapEvents(map);
 var behavior = new H.mapevents.Behavior(mapEvents);
 var geoPosition;
+document.getElementById('sidebarCollapse').addEventListener("click", function(){
+    console.log(map.getViewPort())
+    map.getViewPort().resize();
+});
 
 //--------NOTA-------------------
 //Si no carga la geolocalización, hay posición por default
@@ -173,7 +192,7 @@ function addMarkerToGroup(coordinate, html, group) {
     else
         cocina = "AMERICANA"
     telefono = "91 580 42 60";
-    url = `https://www.here.com/directions/drive/start:${geoPosition.coords.latitude},${geoPosition.coords.longitude}/end:${html.geometry.coordinates[1]},${html.geometry.coordinates[0]}`
+    url = `https://www.here.com/directions/${mode}/start:${geoPosition.coords.latitude},${geoPosition.coords.longitude}/end:${html.geometry.coordinates[1]},${html.geometry.coordinates[0]}`
     marker.setData(`<img id="cardImage"src="${imagen}">
             <div id="cardDecription">
                 <h5 id="cardDescriptionTitle">${html.properties.NombreComercial}</h5>
