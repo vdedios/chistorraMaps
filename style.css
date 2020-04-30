@@ -21,47 +21,52 @@ body {
     padding: 15px;
 }
 
-/**/
 #cardImage{
     width : 100px;
     margin : 0 !important;
+    flex: 1 0 auto;
 }
 #cardDecription{
     color : white;
     margin : 0 !important;
+    display: inline-flex;
+    flex-direction: column;
+    flex: 0 0 60%;
 }
 #cardDescriptionTitle{
     color : white;
     margin : 0 !important;
+    font-size: 1.5em;
 }
-#cardDescriptionAddress{
+.cardDescriptionAddress{
     margin : 0 !important;
+    font-size: 0.9em;
 }
 .cardDescriptionInfo{
     margin : 0 !important;
+    font-size: 0.9em;
 }
 #cardPrice{
     color : white;
-    margin : 1em;
     display : flex;
-    flex-direction : column;
-    justify-content : space-between;
     align-items : center;
     margin : 0 !important;
 }
 #cardPriceImage{
-    margin : 0 !important;
+    margin : 2em !important;
 }
 #cardPricePrice{
     color : green;
-    margin : 0 !important;
+    margin-left : 1em !important;
+    margin-bottom: 0 !important;
 }
 #cardPriceAnchor{
     color : white;
-    margin : 0 !important;
+    margin-bottom: 0.3em !important;
+    margin-top: 0 !important;
 }
 #cardInfo{
-    padding : 1em;
+    padding: 2rem;
     background-color: #1d1919;
     box-shadow : 0 6px 12px 0 rgba(0, 0, 0, 0.01), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
     margin : 0 !important;
@@ -78,11 +83,12 @@ body {
         left : 2em;
         z-index: 10;
         display : none;
-        border-radius : 2rem;
+        border-radius : 0.2rem;
     }
     #cardImage{
         margin : 0 !important;
         width : 150px;
+        display: flex;
     }
     #cardPriceImage{
         margin : 0 !important;
@@ -111,6 +117,7 @@ body {
         width : 20px;
     }
 }
+
 #fa_euro{
     font-size:20px;
     margin: 8 px;

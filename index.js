@@ -213,40 +213,16 @@ function addMarkerToGroup(coordinate, html, group) {
     marker.setData(`<img id="cardImage"src="${imagen}">
             <div id="cardDecription">
                 <h5 id="cardDescriptionTitle">${html.properties.NombreComercial}</h5>
-                <p class="cardDescriptionAddress">${html.properties.Dirección}</p>
+                <p id="cardDescriptionAddress">${html.properties.Dirección}</p>
                 <p class="cardDescriptionInfo"><i>${telefono}</i></p>
+                <div id="cardPrice">
+                    <a id="cardPriceAnchor" href=" ${url} ">
+                        <img id="cardPriceImage" src="img/directions.png"></img>
+                    </a>
+                    <p id="cardPricePrice">€€</p>
+                </div>
                 <p class="cardDescriptionInfo"><i>${cocina}</i></p>
-            </div>
-            <div id="cardPrice">
-                <a id="cardPriceAnchor" href=" ${url} ">
-                    <img id="cardPriceImage" src="img/directions.png"></img>
-                </a>
-                <p id="cardPricePrice">€€</p>
             </div>`);
-    /*
-    marker.setData(`
-    <div class="card mb-3" style="width: 20vw;" id="food-card">
-      <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="${imagen}" class="card-img" alt="...">
-          </div>
-          <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">${html.properties.NombreComercial}</h5>
-            <p class="card-text">${html.properties.Dirección}</p>
-            <p class="card-text">${telefono}</p>
-            <p class="card-text">
-            <script>
-              var precio = "<i class='fas fa-dollar-sign' id='dolar'></i>" ;
-              document.write(precio.repeat(2));
-            </script>
-            </p>
-          <p class="card-text"><medium class="text-muted">${cocina}</small></p>
-        </div>
-        </div>
-      </div>
-    </div>`);
-    */
     marker.id = "marker";
     group.addObject(marker);
 }
