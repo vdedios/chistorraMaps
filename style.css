@@ -1,24 +1,111 @@
 body {
-   margin: 0px;
-   border: 0px;
-   padding: 0px;
-   font-family: sans-serif;
-   color: #333;
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+    color: #333;
 }
-
 #map {
-   height: 100%;
-   width: 100%;
-   position: absolute;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+#control {
+    width: 300px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    z-index: 1000;
+    padding: 15px;
 }
 
-#control {
-   width: 300px;
-   height: 100%;
-   position: absolute;
-   top: 0;
-   left: 0;
-   background-color: white;
-   z-index: 1000;
-   padding: 15px;
+#cardImage{
+    width : 100px;
+    margin : 0 !important;
+}
+#cardDecription{
+    color : white;
+    margin : 0 !important;
+}
+#cardDescriptionTitle{
+    color : white;
+    margin : 0 !important;
+}
+#cardDescriptionAddress{
+    margin : 0 !important;
+}
+.cardDescriptionInfo{
+    margin : 0 !important;
+}
+#cardPrice{
+    color : white;
+    margin : 1em;
+    display : flex;
+    flex-direction : column;
+    justify-content : space-between;
+    align-items : center;
+    margin : 0 !important;
+}
+#cardPriceImage{
+    margin : 0 !important;
+}
+#cardPricePrice{
+    color : green;
+    margin : 0 !important;
+}
+#cardPriceAnchor{
+    color : white;
+    margin : 0 !important;
+}
+#cardInfo{
+    padding : 1em;
+    background-color: #1d1919;
+    box-shadow : 0 6px 12px 0 rgba(0, 0, 0, 0.01), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    margin : 0 !important;
+}
+@media only screen and (min-width: 991px) {
+    #cardInfo{
+        margin : 0 !important;
+        flex-direction : row;
+        justify-content : space-between;
+        align-items : center;
+        position: absolute;
+        top : 2em;
+        left : 2em;
+        z-index: 10;
+        display : none;
+        border-radius : 2rem;
+    }
+    #cardImage{
+        margin : 0 !important;
+        width : 150px;
+    }
+    #cardPriceImage{
+        margin : 0 !important;
+        width : 20px;
+    }
+}
+@media only screen and (max-width: 990px) {
+    #cardInfo{
+        margin : 0 !important;
+        flex-direction : row;
+        justify-content : space-between;
+        align-items : center;
+        position: absolute;
+        bottom: 0;
+        width: 100vw;
+        z-index: 10;
+        position : fixed;
+        display : none;
+    }
+    #cardImage{
+        margin : 0 !important;
+        width : 100px;
+    }
+    #cardPriceImage{
+        margin : 0 !important;
+        width : 20px;
+    }
 }
