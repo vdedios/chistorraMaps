@@ -22,7 +22,11 @@ body {
 }
 
 #cardImage{
+<<<<<<< HEAD
     width : 100%;
+=======
+    width : 100px;
+>>>>>>> 01f44ee2b0633414afde2185ea8947c5276c7cc3
 }
 #cardDecription{
     color : white;
@@ -44,7 +48,11 @@ body {
     align-items : center;
 }
 #cardPriceImage{
+<<<<<<< HEAD
     width : 100%;
+=======
+    width : 100px;
+>>>>>>> 01f44ee2b0633414afde2185ea8947c5276c7cc3
 }
 #cardPricePrice{
 }

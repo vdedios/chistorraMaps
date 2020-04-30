@@ -171,7 +171,7 @@ function addMarkerToGroup(coordinate, html, group) {
     if (html.properties.cocina)
         cocina = html.properties.cocina
     else
-        cocina = "Vegetariana"
+        cocina = "AMERICANA"
     telefono = "91 580 42 60";
     url = `https://www.here.com/directions/drive/start:${geoPosition.coords.latitude},${geoPosition.coords.longitude}/end:${html.geometry.coordinates[1]},${html.geometry.coordinates[0]}`
     marker.setData(`<img id="cardImage"src="${imagen}">
