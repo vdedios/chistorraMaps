@@ -4,28 +4,19 @@
         <title>GISTorras | ¿Donde comer?</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="style.css">
-        <script src="https://kit.fontawesome.com/57b396236e.js" crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-        <script src="https://unpkg.com/tangram/dist/tangram.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/IvanSanchez/Leaflet.Polyline.SnakeAnim/L.Polyline.SnakeAnim.js"></script>
-        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
-        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
-        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
-        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="css/added_style.css">
         <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css"/>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
     </head>
     <body>	
         <div class="wrapper d-flex align-items-stretch">
-            <nav id="sidebar">
-                <div class="p-4 pt-5">    
-                    <a href="#" class="img logo mb-8" style="background-image: url(images/gistorras_sinfondo.png);"></a>
+            <nav id="sidebar" style="height : 100vh; padding : 0!important;">
+                <div class="p-4 pt-5" style="padding-top : 0!important;padding-bottom : 0!important;">    
+                    <a href="#" class="img logo mb-8" style="background-image: url(assets/logos/gistorras_sinfondo.png);"></a>
                     <br>
 
                     <label for="start" id="tipos">Indica la dirección</label>
@@ -130,29 +121,35 @@
             </nav>
             <!-- Page Content  -->
             <div id="content" class="p-0 p-md-0">
-                <nav>
-                    <div style="z-index:4;background-color:#1d1919" class="d-flex">
-                        <button type="button" id="sidebarCollapse" class="btn btn-primary">
-                            <i class="fa fa-bars"></i>
-                            <span class="sr-only">Toggle Menu</span>
-                        </button>
-                        <div class="mx-auto order-0">
-                            <a class="mx-auto" id="titulomid" href="#"><img src="images/fondoNAV.png"> ¿Dónde quieres comer?</a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-                                <span class="navbar-toggler-icon"></span>
+                <div id="map" style="height : 94vh; position : absolute;">
+                    <nav>
+                        <div style="z-index:4;background-color:#1d1919" class="d-flex">
+                            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                                <i class="fa fa-bars"></i>
                             </button>
-                        </div>
-                </nav>
-                <div id="map">
-                    <script src="index.js" type="text/javascript"></script>
-                    <div id="cardInfo">
-                    </div>
+                            <div class="mx-auto order-0">
+                                <a class="mx-auto" id="titulomid" href="#"><img src="assets/logos/fondoNAV.png"> ¿Dónde quieres comer?</a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                                </button>
+                            </div>
+                    </nav>
+                    <div id="cardInfo"></div>
                 </div>
-                    </div>
             </div>
-            <script src="js/jquery.min.js"></script>
-            <script src="js/popper.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/main.js"></script>
+        </div>
+        <script src="https://kit.fontawesome.com/57b396236e.js" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/tangram/dist/tangram.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/IvanSanchez/Leaflet.Polyline.SnakeAnim/L.Polyline.SnakeAnim.js"></script>
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="js/index.js" type="text/javascript"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>
