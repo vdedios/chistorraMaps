@@ -51,7 +51,7 @@ if(navigator.geolocation) {
         // set maker position using the latitude and longitude in the received position
         markerPosition = {lat:position.coords.latitude,lng:position.coords.longitude};
         //  create pos makrker element using the received position
-        var icon = new H.map.Icon('assets/logos/home.png');
+        var icon = new H.map.Icon('assets/markers/home.png');
         posMarker = new H.map.Marker(markerPosition,{icon: icon});
         posMarker.id = "myPos";
         map.addObject(posMarker);
