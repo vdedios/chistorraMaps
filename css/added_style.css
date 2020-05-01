@@ -122,16 +122,7 @@ p{
 
 #fa_euro{
     font-size:20px;
-    margin: 8 px;
-}
-#fa_precio_low{
-    color: #13f626;
-}
-#fa_precio_mid{
-    color: #f8b72f;
-}
-#fa_precio_high{
-    color: #c12923;
+    margin: 0.5em;
 }
 [type=radio]:checked + [id=fa_precio_low] {
     box-shadow: 0 0 0 1px  #464444;

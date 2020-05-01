@@ -11,79 +11,78 @@
         <link rel="stylesheet" href="css/added_style.css">
         <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css"/>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
     </head>
-    <body style="height : 100vh">	
+    <body style="height : 100vh; font-family: 'Josefin Sans', sans-serif;">	
         <div class="wrapper d-flex align-items-stretch" style="height : 100%;">
             <!-- Page Content  -->
             <div id="content" class="p-0 p-md-0" style="height : 100%;">
                 <div id="map" style="height : 100%; position : relative;">
-                    <nav id="sidebar" style="height : 100vh; padding : 0!important; position : absolute; z-index : 3;">
+                    <nav id="sidebar" style="height : 100vh; padding : 0!important; position : absolute; z-index : 3;background-color: red; background-image: linear-gradient(to top left, #C82625, #FA862C);">
                         <div class="p-4 pt-5" style="padding-top : 0!important;padding-bottom : 0!important;">    
                             <br>
-                            <label for="start" id="tipos" style="padding-top:5rem;">Dirección</label>
-                            <div class="input-group">
+                            <div class="input-group"style="padding: 3rem 0 3rem 0;">
                                 <input type="text" class="form-control" placeholder="Calle Alcalá 1, Madrid" id="start" />
-                                <button id="change-start" class="btn btn-primary">Go!</button>
+                                <button id="change-start" class="btn btn-primary" style="color:white; background-color:#1d1919; border-color:#1d1919;border-radius: 0 0.5rem 0.5rem 0;">Go!</button>
                             </div>
                             <ul class="list-unstyled components mb-5">
                                 <p>
                                 <li class="active">
-                                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle" id="mymenu" ><i class="fas fa-filter" style="margin-right:15px" ></i>    Filtrar</a>
+                                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle" id="mymenu" style="color:#1d1919"><i class="fas fa-filter" style="margin-right:15px" ></i>    Filtrar</a>
                                     <ul class="collapse show list-unstyled" id="homeSubmenu">
                                         <br>          
                                         <li>
-                                            <span id="tipos"> Transporte:<br> </span>
+                                            <span id="tipos" style="color:#ffffff; font-weight:bold"> Transporte:<br> </span>
                                             <div style="display:flex;justify-content:space-around" id="distancia">
                                                 <label>
                                                     <input type="radio" name="routing-mode" id="bike" value="bike">
                                                     <span  id="fa_transport">
-                                                        <i class="fas fa-bicycle"></i>
+                                                        <i class="fas fa-bicycle" style="color: rgba(255, 255, 255, 0.5);"></i>
                                                     </span>
                                                 </label>
                                                 <label>
-                                                    <input type="radio" name="routing-mode" id="car" value="car">
+                                                    <input type="radio" name="routing-mode" id="car"  value="car">
                                                     <span id="fa_transport">
-                                                        <i class="fas fa-car"></i>
+                                                        <i class="fas fa-car"style="color: rgba(255, 255, 255, 0.5);"></i>
                                                     </span>
                                                 </label>
                                                 <label>
                                                     <input type="radio" name="routing-mode" id="walk" value="walk">
                                                     <span id="fa_transport">
-                                                        <i class="fas fa-walking"></i>
+                                                        <i class="fas fa-walking"style="color: rgba(255, 255, 255, 0.5);"></i>
                                                     </span>
                                                 </label>
                                             </div>
                                         </li>    
                                         <li>
-                                            <span id="tipos"> Distancia:</span>
+                                            <span id="tipos" style="color:#ffffff; font-weight:bold; padding-right:0.5em;"> Distancia: </span>
+                                            <output name="OutputName" id="OutputId" style="margin-bottom: 0.5em;">50</output> Metros
+                                            <script>
+                                                function updateTextInput(val) {
+                                                    document.getElementById('textInput').value=val;} 
+                                            </script>
                                             <div class="slidecontainer">
-                                                <input type="range" min="10" max="4000" value="500" class="slider" id="range" oninput="OutputId.value = range.value">
-                                                <br>
-                                                <output name="OutputName" id="OutputId">50</output> Metros
-                                                <script>
-                                                    function updateTextInput(val) {
-                                                        document.getElementById('textInput').value=val;} 
-                                                </script>
+                                                <input type="range" min="10" max="4000" value="500" class="slider" id="range" style="background-color: rgba(255, 255, 255, 0.5); margin-bottom:2em;" oninput="OutputId.value = range.value">
                                             </div>
                                         </li>
                                         <li>
                                             <div class="form-group">
-                                                <span id="tipos"> Precio:</span>
+                                                <span id="tipos" style="color:#ffffff; font-weight:bold"> Precio:</span>
                                                 <div style="display:flex;justify-content:space-around">
-                                                    <label id="fa_euro">
+                                                    <label id="fa_euro"style="color: rgba(255, 255, 255, 0.5); margin:0;">
                                                         <input type="radio" name="routing-mode" id="bike" value="barato">
                                                         <span  id="fa_check">
                                                             <i class="fas fa-euro"></i>
                                                         </span>
                                                     </label>
-                                                    <label id="fa_euro">
+                                                    <label id="fa_euro"style="color: rgba(255, 255, 255, 0.5); margin:0;">
                                                         <input type="radio" name="routing-mode" id="car" value="medio">
                                                         <span id="fa_check">
                                                             <i class="fas fa-euro"></i>
                                                             <i class="fas fa-euro"></i>
                                                         </span>
                                                     </label>
-                                                    <label id="fa_euro">
+                                                    <label id="fa_euro"style="color: rgba(255, 255, 255, 0.5); margin:0;">
                                                         <input type="radio" name="routing-mode" id="walk" value="caro">
                                                         <span id="fa_check">
                                                             <i class="fas fa-euro"></i>
@@ -97,8 +96,8 @@
                                         <li>
                                             <li>
                                                 <div class="form-group">
-                                                    <span id="tipos"><label for="sel1">Tipo de comida:</label></span>
-                                                    <select class="form-control" id="sel1">
+                                                    <span id="tipos"><label for="sel1" style="color:#ffffff; font-weight:bold;">Tipo de comida:</label></span>
+                                                    <select class="form-control" style="color: rgba(255, 255, 255, 0.5); background : 0; border-color: rgba(255, 255, 255, 0.5);" id="sel1">
                                                         <option selected>Elige tu estilo</option>
                                                         <option>Asturiana</option>
                                                         <option>Gallega</option>
@@ -111,7 +110,7 @@
                                                 </div>
                                     </ul>
                                     <li>
-                                        <a href="#pageSubmenu"  aria-expanded="false"  id="mymenu"><i class="fas fa-utensils" style="margin-right:15px" ></i> Ruta de la tapa</a>
+                                        <a href="#pageSubmenu"  aria-expanded="false"  id="mymenu"style="color: #1d1919"><i class="fas fa-utensils" style="margin-right:15px" ></i> Ruta de la tapa</a>
                                     </li>
                                     <div class="footer">
                                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
