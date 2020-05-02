@@ -152,26 +152,6 @@ if(navigator.geolocation) {
     );
 }
 //Calculate distance betwenn two coordinates
-function distanceCoords(lat1,lon1,lat2,lon2) {
-    if ((lat1 == lat2) && (lon1 == lon2)) {
-        return 0;
-    }
-    else {
-        var radlat1 = Math.PI * lat1/180;
-        var radlat2 = Math.PI * lat2/180;
-        var theta = lon1-lon2;
-        var radtheta = Math.PI * theta/180;
-        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-        if (dist > 1) {
-            dist = 1;
-        }
-        dist = Math.acos(dist);
-        dist = dist * 180/Math.PI;
-        dist = dist * 60 * 1.1515;
-        dist = dist * 1609.344;
-        return dist;
-    }
-}
 function addMarkerToGroup(coordinate, html, group) {
     //console.log(html.properties)
     if (html.properties.ruta_tapa == "1"){
@@ -246,40 +226,27 @@ function addInfoBubble(map){
     }, false);
 }
 function displayDATA(id, map, circle, group, option){
-    let url = 'https://xyz.api.here.com/hub/spaces/E6c8u3US/search?limit=5000&clientId=cli&access_token=AOzek1XSRkWM9CxFWw47egA';
+    let url = `https://xyz.api.here.com/hub/spaces/E6c8u3US/spatial?lat=${markerPosition.lat}&lon=${markerPosition.lng}&radius=${circle.getRadius()}&clientId=cli&access_token=AOzek1XSRkWM9CxFWw47egA`;
     fetch(url, {
         "method": "GET"
     }).then(response => response.json()
     ).then(response => {
-        //console.log(response);
-        // If distance between item and circle center is less than circle radious, create it and display it
         for (i=0; i < response.features.length; i++){
-            //console.log(response.features[i])
             if (id){
                 console.log(option);
-                if (circle.getRadius() > distanceCoords(response.features[i].geometry.coordinates[1],
-                    response.features[i].geometry.coordinates[0],
-                    markerPosition.lat, markerPosition.lng)){
-                    /*
+                if ((option == 1 && response.features[i].properties.cocina == 'ASTURIANA') ||
+                    (option == 2 && response.features[i].properties.cocina == 'GALLEGA') ||
+                    (option == 3 && response.features[i].properties.cocina == 'INTERNACIONAL') ||
+                    (option == 4 && response.features[i].properties.cocina == 'AMERICANA') ||
+                    (option == 5 && response.features[i].properties.cocina == 'POSTRES') ||
+                    (option == 6 && response.features[i].properties.cocina == 'TAPAS') ||
+                    (option == 7 && response.features[i].properties.ruta_tapa == '1') ||
+                    (option == 0)){
                     newPos= ({lat: response.features[i].geometry.coordinates[1], lng: response.features[i].geometry.coordinates[0]});
                     respData= response.features[i];
                     addMarkerToGroup(newPos, respData, group);
-                    */
-                    if ((option == 1 && response.features[i].properties.cocina == 'ASTURIANA') ||
-                        (option == 2 && response.features[i].properties.cocina == 'GALLEGA') ||
-                        (option == 3 && response.features[i].properties.cocina == 'INTERNACIONAL') ||
-                        (option == 4 && response.features[i].properties.cocina == 'AMERICANA') ||
-                        (option == 5 && response.features[i].properties.cocina == 'POSTRES') ||
-                        (option == 6 && response.features[i].properties.cocina == 'TAPAS') ||
-                        (option == 7 && response.features[i].properties.ruta_tapa == '1') ||
-                        (option == 0)){
-                        newPos= ({lat: response.features[i].geometry.coordinates[1], lng: response.features[i].geometry.coordinates[0]});
-                        respData= response.features[i];
-                        addMarkerToGroup(newPos, respData, group);
-                    }
                 }
             }
-            //Default when no device position
             else{
                 newPos= ({lat: response.features[i].geometry.coordinates[1], lng: response.features[i].geometry.coordinates[0]});
                 respData= response.features[i];
@@ -315,3 +282,25 @@ function newCircle (markerPosition, map){
     return circle
 }
 window.addEventListener('resize', () => map.getViewPort().resize());
+
+
+function distanceCoords(lat1,lon1,lat2,lon2) {
+    if ((lat1 == lat2) && (lon1 == lon2)) {
+        return 0;
+    }
+    else {
+        var radlat1 = Math.PI * lat1/180;
+        var radlat2 = Math.PI * lat2/180;
+        var theta = lon1-lon2;
+        var radtheta = Math.PI * theta/180;
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        if (dist > 1) {
+            dist = 1;
+        }
+        dist = Math.acos(dist);
+        dist = dist * 180/Math.PI;
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1609.344;
+        return dist;
+    }
+}
