@@ -212,10 +212,12 @@ function addMarkerToGroup(coordinate, html, group) {
     url = `https://www.here.com/directions/${mode}/start:${geoPosition.coords.latitude},${geoPosition.coords.longitude}/end:${html.geometry.coordinates[1]},${html.geometry.coordinates[0]}`
     marker.setData(`<figure id="cardFigure"><img id="cardImage"src="${imagen}"/></figure>
             <div id="cardDecription">
+                <div id="cardDescriptionInfo">
                 <h5 id="cardDescriptionTitle">${html.properties.NombreComercial}</h5>
                 <p id="cardDescriptionAddress">${html.properties.Dirección}</p>
                 <p class="cardDescriptionInfo"><i>${telefono}</i></p>
                 <p class="cardDescriptionInfo"><i>${cocina}</i></p>
+                </div>
                 <div id="cardPrice">
                     <a id="cardPriceAnchor" href=" ${url} ">
                         <img id="cardPriceImage" src="assets/logos/directions.png"/>
