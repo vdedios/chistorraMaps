@@ -11,145 +11,168 @@
         <link rel="stylesheet" href="css/added_style.css">
         <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css"/>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
     </head>
-    <body>	
-        <div class="wrapper d-flex align-items-stretch">
-            <nav id="sidebar" style="height : 100vh; padding : 0!important;">
-                <div class="p-4 pt-5" style="padding-top : 0!important;padding-bottom : 0!important;">    
-                    <a href="#" class="img logo mb-8" style="background-image: url(assets/logos/gistorras_sinfondo.png);"></a>
-                    <br>
-
-                    <label for="start" id="tipos">Indica la dirección</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Calle Alcalá 1, Madrid" id="start" />
-                        <button id="change-start" class="btn btn-primary">Go!</button>
-                    </div>
-                    <ul class="list-unstyled components mb-5">
-                        <p>
-                        <li class="active">
-                            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle" id="mymenu" ><i class="fas fa-filter" style="margin-right:15px" ></i>    Filtrar</a>
-                            <ul class="collapse show list-unstyled" id="homeSubmenu">
-                                <br>          
-                                <li>
-                                    <span id="tipos"> Transporte:<br> </span>
-                                    <div style="display:flex;justify-content:space-around" id="distancia">
-                                        <label>
-                                            <input type="radio" name="routing-mode" id="bike" value="bike">
-                                            <span  id="fa_transport">
-                                                <i class="fas fa-bicycle"></i>
-                                            </span>
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="routing-mode" id="car" value="car">
-                                            <span id="fa_transport">
-                                                <i class="fas fa-car"></i>
-                                            </span>
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="routing-mode" id="walk" value="walk">
-                                            <span id="fa_transport">
-                                                <i class="fas fa-walking"></i>
-                                            </span>
-                                        </label>
-                                    </div>
-                                </li>    
-                                <li>
-                                    <span id="tipos"> Distancia:</span>
-                                    <div class="slidecontainer">
-                                        <input type="range" min="10" max="4000" value="500" class="slider" id="range" oninput="OutputId.value = range.value">
-                                        <br>
-                                        <output name="OutputName" id="OutputId">50</output> Metros
-                                        <script>
-                                            function updateTextInput(val) {
-                                                document.getElementById('textInput').value=val;} 
-                                        </script>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-group">
-                                        <span id="tipos"> Precio:</span>
-                                        <div style="display:flex;justify-content:space-around">
-                                            <label id="fa_euro">
-                                                <input type="radio" name="routing-mode" id="bike" value="barato">
-                                                <span  id="fa_check">
-                                                    <i class="fas fa-euro"></i>
-                                                </span>
-                                            </label>
-                                            <label id="fa_euro">
-                                                <input type="radio" name="routing-mode" id="car" value="medio">
-                                                <span id="fa_check">
-                                                    <i class="fas fa-euro"></i>
-                                                    <i class="fas fa-euro"></i>
-                                                </span>
-                                            </label>
-                                            <label id="fa_euro">
-                                                <input type="radio" name="routing-mode" id="walk" value="caro">
-                                                <span id="fa_check">
-                                                    <i class="fas fa-euro"></i>
-                                                    <i class="fas fa-euro"></i>
-                                                    <i class="fas fa-euro"></i>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <li>
-                                        <div class="form-group">
-                                            <span id="tipos"><label for="sel1">Tipo de comida:</label></span>
-                                            <select class="form-control" id="sel1">
-                                                <option selected>Elige tu estilo</option>
-                                                <option>Asturiana</option>
-                                                <option>Gallega</option>
-                                                <option>Internacional</option>
-                                                <option>Americana</option>
-                                                <option>Postres</option>
-                                                <option>Tapas</option>
-                                                <option>Ruta de la tapa</option>
-                                            </select>
-                                        </div>
-                            </ul>
-                            <li>
-                                <a href="#pageSubmenu"  aria-expanded="false"  id="mymenu"><i class="fas fa-utensils" style="margin-right:15px" ></i> Ruta de la tapa</a>
-                            </li>
-                            <div class="footer">
-                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <i class="icon-heart" aria-hidden="true"></i>GIStorras team.</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                            </div>
-                </div>
-            </nav>
+    <body style="height : 100vh; font-family: 'Josefin Sans', sans-serif;">	
+        <div class="wrapper d-flex align-items-stretch" style="height : 100%;">
             <!-- Page Content  -->
-            <div id="content" class="p-0 p-md-0">
-                <div id="map" style="height : 94vh; position : absolute;">
-                    <nav>
+            <div id="content" class="p-0 p-md-0" style="height : 100%;">
+                <div id="map" style="height : 100%; position : relative;">
+                    <nav id="sidebar" style="height : 100vh; padding : 0!important; position : absolute; z-index : 4;background-color: red; background-image: linear-gradient(to top left, #C82625, #FA862C);">
+                        <div class="p-4 pt-5" style="padding-top : 0!important;padding-bottom : 0!important;">    
+                            <br>
+                            <div class="input-group"style="padding: 3rem 0 3rem 0;">
+                                <input type="text" class="form-control" placeholder="Calle Alcalá 1, Madrid" id="start" />
+                                <button id="change-start" class="btn btn-primary" style="color:white; background-color:#1d1919; border-color:#1d1919;border-radius: 0 0.75rem 0.75rem 0;">Go!</button>
+                            </div>
+                            <ul class="list-unstyled components mb-5">
+                                <p>
+                                <li class="active">
+                                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle" id="mymenu" style="color:rgb(29, 25, 25, 0.75)"><i class="fas fa-filter" style="margin-right:15px" ></i>    Filtrar</a>
+                                    <ul class="collapse show list-unstyled" id="homeSubmenu">
+                                        <br>          
+                                        <li>
+                                            <span id="tipos" style="color:#ffffff; font-weight:bold"> Transporte:<br> </span>
+                                            <div style="display:flex;justify-content:space-around" id="distancia">
+                                                <label>
+                                                    <input type="radio" name="routing-mode" id="bike" value="bike">
+                                                    <span  id="fa_transport">
+                                                        <i class="fas fa-bicycle" style="color: rgba(255, 255, 255, 0.5);"></i>
+                                                    </span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="routing-mode" id="car"  value="car">
+                                                    <span id="fa_transport">
+                                                        <i class="fas fa-truck-pickup"style="color: rgba(255, 255, 255, 0.5);"></i>
+                                                    </span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="routing-mode" id="walk" value="walk">
+                                                    <span id="fa_transport">
+                                                        <i class="fas fa-shoe-prints" style="color: rgba(255, 255, 255, 0.5);"></i>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </li>    
+                                        <li>
+                                            <span id="tipos" style="color:#ffffff; font-weight:bold; padding-right:0.5em;"> Distancia: </span>
+                                            <output name="OutputName" id="OutputId" style="margin-bottom: 0.5em;">50</output> Metros
+                                            <script>
+                                                function updateTextInput(val) {
+                                                    document.getElementById('textInput').value=val;} 
+                                            </script>
+                                            <div class="slidecontainer">
+                                                <input type="range" min="10" max="4000" value="500" class="slider" id="range" style="background-color: rgba(255, 255, 255, 0.5); margin-bottom:2em;" oninput="OutputId.value = range.value">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group">
+                                                <span id="tipos" style="color:#ffffff; font-weight:bold"> Precio:</span>
+                                                <div style="display:flex;justify-content:space-around">
+                                                    <label id="fa_euro"style="color: rgba(255, 255, 255, 0.5); margin:0;">
+                                                        <input type="radio" name="routing-mode" id="bike" value="barato">
+                                                        <span  id="fa_check">
+                                                            <i class="fas fa-euro"></i>
+                                                        </span>
+                                                    </label>
+                                                    <label id="fa_euro"style="color: rgba(255, 255, 255, 0.5); margin:0;">
+                                                        <input type="radio" name="routing-mode" id="car" value="medio">
+                                                        <span id="fa_check">
+                                                            <i class="fas fa-euro"></i>
+                                                            <i class="fas fa-euro"></i>
+                                                        </span>
+                                                    </label>
+                                                    <label id="fa_euro"style="color: rgba(255, 255, 255, 0.5); margin:0;">
+                                                        <input type="radio" name="routing-mode" id="walk" value="caro">
+                                                        <span id="fa_check">
+                                                            <i class="fas fa-euro"></i>
+                                                            <i class="fas fa-euro"></i>
+                                                            <i class="fas fa-euro"></i>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <li>
+                                                <div class="form-group">
+                                                    <span id="tipos"><label for="sel1" style="color:#ffffff; font-weight:bold;">Tipo de comida:</label></span>
+                                                    <select class="form-control" style="color: rgba(255, 255, 255, 0.5); background : 0; border-color: rgba(255, 255, 255, 0.5);" id="sel1">
+                                                        <option selected>Elige tu estilo</option>
+                                                        <option>Asturiana</option>
+                                                        <option>Gallega</option>
+                                                        <option>Internacional</option>
+                                                        <option>Americana</option>
+                                                        <option>Postres</option>
+                                                        <option>Tapas</option>
+                                                        <option>Ruta de la tapa</option>
+                                                    </select>
+                                                </div>
+                                    </ul>
+                                    <li>
+                                        <a href="#pageSubmenu"  aria-expanded="false"  id="mymenu" style="color:rgb(29, 25, 25, 0.75)"><i class="fas fa-utensils" style="margin-right:15px" ></i> Ruta de la tapa</a>
+                                    </li>
+                                    <div class="footer">
+                                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <i class="icon-heart" aria-hidden="true"></i>GIStorras team.</a>
+                                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                                    </div>
+                        </div>
+                    </nav>
+                    <nav style="position : relative; top : 0; position : absolute; z-index : 5; width : 100%;">
                         <div style="z-index:4;background-color:#1d1919" class="d-flex">
-                            <button type="button" id="sidebarCollapse" class="btn btn-primary">
-                                <i class="fa fa-bars"></i>
+                            <button type="button" id="sidebarCollapse" class="hambEffects">
+                                <img src="assets/logos/hamburguer.svg" style="width:30px;"/>
                             </button>
                             <div class="mx-auto order-0">
-                                <a class="mx-auto" id="titulomid" href="#"><img src="assets/logos/fondoNAV.png"> ¿Dónde quieres comer?</a>
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-                                </button>
+                                <a class="mx-auto" id="titulomid" href="#"><img src="assets/logos/fondoNAV.png" style="padding : 0.5em;"/></a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2"></button>
                             </div>
+                        </div>
                     </nav>
                     <div id="cardInfo"></div>
+                    <div id="popupHello" class="animate-entrance">
+                        <div id="popupHelloTexto">
+                            <h1>¡Encuentra dónde comer!</h1>
+                            <div style="display:flex; align-items:center; margin-bottom:1em;">
+                                <p style="flex : 2;">Los restaurantes más cercanos, decide en menos de un minuto.</p>
+                                <figure style="flex : 1;">
+                                    <img src="assets/logos/comida.png" style="width:100%"/>
+                                </figure>
+                            </div>
+                            <div style="display:flex; align-items:center;">
+                                <p style="flex : 8;">Para una mejor experiencia activa la ubicación</p>
+                                <figure style="flex : 1;">
+                                    <img src="assets/logos/posicion.png" style="width:100%"/>
+                                </figure>
+                            </div>
+                        </div>
+                        <div id="popupHelloCerrar">
+                            <button  type="button" class="popupCloseButton" id="popupClose" onclick = closePopup()>
+                            <i class="fas fa-times popupHelloCerrarCruz" style="font-size:3rem; color :#1d1919!important;"></i>
+                            <script>
+                                function closePopup() {
+                                    document.getElementById("popupHello").style.display = "none";
+                                }
+                            </script>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <script src="https://kit.fontawesome.com/57b396236e.js" crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-        <script src="https://unpkg.com/tangram/dist/tangram.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/IvanSanchez/Leaflet.Polyline.SnakeAnim/L.Polyline.SnakeAnim.js"></script>
-        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
-        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
-        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
-        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script src="js/index.js" type="text/javascript"></script>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/popper.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>
+            <script src="https://kit.fontawesome.com/57b396236e.js" crossorigin="anonymous"></script>
+            <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+            <script src="https://unpkg.com/tangram/dist/tangram.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/gh/IvanSanchez/Leaflet.Polyline.SnakeAnim/L.Polyline.SnakeAnim.js"></script>
+            <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+            <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+            <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+            <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script src="js/index.js" type="text/javascript"></script>
+            <script src="js/jquery.min.js"></script>
+            <script src="js/popper.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/main.js"></script>
     </body>
 </html>

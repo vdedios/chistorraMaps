@@ -35,21 +35,12 @@ body {
 .cardDescriptionAddress{
     margin : 0 !important;
     font-size: 0.9em;
+    color : rgb(255, 255, 255, 0.5);
 }
 .cardDescriptionInfo{
     margin : 0 !important;
     font-size: 0.9em;
-}
-#cardPrice{
-    color : white;
-    display : flex;
-    align-items : center;
-    margin : 0 !important;
-}
-#cardPricePrice{
-    color : green;
-    margin-left : 1em !important;
-    margin-bottom: 0 !important;
+    color : rgb(255, 255, 255, 0.5);
 }
 #cardPriceAnchor{
     color : white;
@@ -62,26 +53,48 @@ body {
     background-color: #1d1919;
     box-shadow : 0 6px 12px 0 rgba(0, 0, 0, 0.01), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
     margin : 0 !important;
-    z-index: 10;
-}
-#cardDecription{
-    padding: 0.25em 0.25em 0.25em 0.75em;
+    z-index: 3;
+    background-image: linear-gradient(to right, #C82625, #FA862C);
 }
 #cardFigure{
     padding : 0;
     margin : 0;
 }
-#cardImage{
-    margin : 0 !important;
-    width : 100%;
-}
 p{
     margin : 0!important;
 }
-
-#cardPriceImage{
-    margin : 0 !important;
-    width : 20px;
+#popupHello{
+    font-size : 20px;
+    padding : 3rem;
+    border-radius : 1rem;
+    color : #1d1919 !important;
+    position : absolute;
+    z-index : 2;
+}
+h1{
+    color : #1d1919 !important;
+    font-weight : bold !important;
+    font-family: 'Josefin Sans', sans-serif;
+}
+#popupHelloCerrar{
+    color : white;
+    position : absolute;
+    top : 1em;
+    right : 1em;
+}
+#popupHelloCerrarCruz:hover{
+    color : #1d1919!important;
+}
+#popupHello::after {
+    content: "";
+    background-image: linear-gradient(to top left, #C82625, #FA862C);
+    left: 0;
+    opacity: 0.85;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
 }
 @media only screen and (min-width: 991px) {
     #cardInfo{
@@ -89,18 +102,37 @@ p{
         flex-direction : column;
         font-size : 12px;
         top : 5em !important;
-        left : 2em;
+        left : 28em;
         display : none;
         border-radius : 0.5rem;
+        width : 300px;
     }
     #cardImage{
+        margin : 0 !important;
         width : 300px;
         border-radius : 0.5rem 0.5rem 0 0rem;
-        display: flex;
     }
     #cardDecription{
         padding: 1em;
     }
+#popupHello{
+    left : 30%;
+    top : 25%;
+    width : 600px;
+}
+#popupHello::after {
+    border-radius : 3rem;
+}
+.animate-entrance{
+    animation-name: hor;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    position : relative;
+}
+@keyframes hor {
+  0%   {left:-2000px; top:25%;}
+  100% {left:30%; top:25%;}
+}
 }
 @media only screen and (max-width: 990px) {
     #cardInfo{
@@ -109,29 +141,74 @@ p{
         width: 100vw;
         position : fixed;
         display : none;
-        transition: height 1s;
     }
     #cardDecription{
-        font-size : 12px;
+        font-size : 11px;
         flex : 1;
     }
     #cardFigure{
         flex : 1;
     }
+    #cardImage{
+        margin : 0 !important;
+        width : 100%;
+    }
+#popupHello{
+    top : 20%;
+    margin:0.5em;
+    font-size : 18px;
+    padding : 2em;
+    border-radius : 0.5em;
+    z-index : 2;
 }
-
+#popupHello::after {
+    border-radius : 1.5rem;
+}
+h1{
+    font-size : 30px;
+    color : #1d1919 !important;
+    font-weight : bold !important;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.animate-entrance{
+    animation-name: ver;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    position : relative;
+}
+@keyframes ver {
+  0%   {left:0.25em; top:2000px;}
+  100% {left:0.25em; top:20%;}
+}
+}
+#cardDecription{
+    display : flex;
+    flex-direction : row;
+}
+#cardDescriptionInfo{
+    flex : 2;
+}
+#cardPrice{
+    margin : 0 !important;
+    flex : 1;
+    color : white;
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+}
+#cardPriceImage{
+    margin-bottom: 1rem !important;
+    width : 40px;
+}
+#cardPricePrice{
+    margin-top : 1em;
+    font-size : 14px;
+    font-weight : bold;
+    color : rgb(255, 255, 255, 0.5);
+}
 #fa_euro{
     font-size:20px;
-    margin: 8 px;
-}
-#fa_precio_low{
-    color: #13f626;
-}
-#fa_precio_mid{
-    color: #f8b72f;
-}
-#fa_precio_high{
-    color: #c12923;
+    margin: 0.5em;
 }
 [type=radio]:checked + [id=fa_precio_low] {
     box-shadow: 0 0 0 1px  #464444;
@@ -148,3 +225,25 @@ p{
     border-radius: 5px;;
     background-color: #f8f4f42f;
 }
+.hambEffects{
+    margin-left : 0.5rem;
+    background-color:transparent !important;
+    border-color:transparent !important;
+    transform : rotate(0deg);
+    transition: transform 350ms;
+}
+.hambEffects:active{
+    transform : rotate(180deg);
+    transition:  0s;
+}
+.popupCloseButton{
+    background-color:transparent !important;
+    border-color:transparent !important;
+    transform : rotate(0deg);
+    transition: transform 350ms;
+}
+.popupCloseButton:active{
+    transform : rotate(180deg);
+    transition:  0s;
+}
+

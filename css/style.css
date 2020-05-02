@@ -8298,7 +8298,7 @@ a[data-toggle="collapse"] {
     width: 100%;
     height: 15px;
     border-radius: 5px;  
-    background: #c12923;
+    background: white;
     outline: none;
     opacity: 0.9;
     -webkit-transition: .2s;
@@ -8311,7 +8311,7 @@ a[data-toggle="collapse"] {
     width: 25px;
     height: 25px;
     border-radius: 50%; 
-    background: #f68713;
+    background: white;
     cursor: pointer;
   }
   
@@ -8319,7 +8319,7 @@ a[data-toggle="collapse"] {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #4CAF50;
+    background: white;
     cursor: pointer;
   }
 
