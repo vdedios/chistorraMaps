@@ -139,3 +139,15 @@ p{
     border-radius: 5px;;
     background-color: #f8f4f42f;
 }
+
+.hambEffects{
+    margin-left : 0.5rem;
+    background-color:transparent !important;
+    border-color:transparent !important;
+    transform : rotate(0deg);
+    transition: transform 500ms;
+}
+.hambEffects:active{
+    transform : rotate(180deg);
+    transition:  0s;
+}
