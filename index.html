@@ -130,22 +130,49 @@
                             </div>
                         </div>
                     </nav>
-                <div id="cardInfo"></div>
+                    <div id="cardInfo"></div>
+                    <div id="popupHello" class="animate-entrance">
+                        <div id="popupHelloTexto">
+                            <h1>¡Encuentra dónde comer!</h1>
+                            <div style="display:flex; align-items:center; margin-bottom:1em;">
+                                <p style="flex : 2;">Los restaurantes más cercanos, decide en menos de un minuto.</p>
+                                <figure style="flex : 1;">
+                                    <img src="assets/logos/comida.png" style="width:100%"/>
+                                </figure>
+                            </div>
+                            <div style="display:flex; align-items:center;">
+                                <p style="flex : 8;">Para una mejor experiencia activa la ubicación</p>
+                                <figure style="flex : 1;">
+                                    <img src="assets/logos/posicion.png" style="width:100%"/>
+                                </figure>
+                            </div>
+                        </div>
+                        <div id="popupHelloCerrar">
+                            <button  type="button" class="popupCloseButton" id="popupClose" onclick = closePopup()>
+                            <i class="fas fa-times popupHelloCerrarCruz" style="font-size:3rem; color :#1d1919!important;"></i>
+                            <script>
+                                function closePopup() {
+                                    document.getElementById("popupHello").style.display = "none";
+                                }
+                            </script>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <script src="https://kit.fontawesome.com/57b396236e.js" crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-        <script src="https://unpkg.com/tangram/dist/tangram.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/IvanSanchez/Leaflet.Polyline.SnakeAnim/L.Polyline.SnakeAnim.js"></script>
-        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
-        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
-        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
-        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <script src="js/index.js" type="text/javascript"></script>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/popper.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>
+            <script src="https://kit.fontawesome.com/57b396236e.js" crossorigin="anonymous"></script>
+            <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+            <script src="https://unpkg.com/tangram/dist/tangram.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/gh/IvanSanchez/Leaflet.Polyline.SnakeAnim/L.Polyline.SnakeAnim.js"></script>
+            <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+            <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+            <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+            <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script src="js/index.js" type="text/javascript"></script>
+            <script src="js/jquery.min.js"></script>
+            <script src="js/popper.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/main.js"></script>
     </body>
 </html>
