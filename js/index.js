@@ -1,21 +1,6 @@
 var platform = new H.service.Platform({
     apikey: "VJoA7tGmC3RqiMzEPFBaLmfsHdU2GnJBRgD88cBBuwA"
 });
-
-var mode = "walk";
-
-document.getElementById('car').addEventListener('click', function (){
-    mode = 'drive';
-})
-
-document.getElementById('bike').addEventListener('click', function (){
-    mode = 'bike';
-})
-
-document.getElementById('walk').addEventListener('click', function (){
-    mode = 'walk';
-})
-
 const $$ = qq => document.querySelectorAll(qq);
 // Obtain the default map types from the platform object:
 var defaultLayers = platform.createDefaultLayers();
@@ -33,16 +18,10 @@ var ui = H.ui.UI.createDefault(map, defaultLayers);
 var mapEvents = new H.mapevents.MapEvents(map);
 var behavior = new H.mapevents.Behavior(mapEvents);
 var geoPosition;
-document.getElementById('sidebarCollapse').addEventListener("click", function(){
-    console.log(map.getViewPort())
-    map.getViewPort().resize();
-});
 
 //--------NOTA-------------------
 //Si no carga la geolocalización, hay posición por default
-//Ahora solo queda organizar el código para que haya datos en ambos, localizado y no
 //--------------------------------
-
 if(navigator.geolocation) {
     /*------------------------GEO LOCALIZATION-------------------------------------*/
     navigator.geolocation.getCurrentPosition(position => {
@@ -57,10 +36,6 @@ if(navigator.geolocation) {
         map.addObject(posMarker);
         map.setCenter(markerPosition);
         /*------------------------CIRCLE-----------------------------------------------------*/
-        //--------NOTA--------------------
-        //Queda modificar el radio y la vista en función del vehículo. Para ello añadir una query adicional
-        //Como default está para ir andando y a 100m.
-        //--------------------------------
         var circle = newCircle(markerPosition, map);
         /*------------------------RESTAURANT DATA-------------------------------------*/
         // Displaying data
@@ -69,7 +44,6 @@ if(navigator.geolocation) {
         map.addObject(group);
         displayDATA(1, map, circle, group, document.getElementById('sel1').selectedIndex);
         addInfoBubble(map);
-
         /*-------------------MODIFYING DATA FROM DOM----------------------------*/
         //Modifying range and display data  with slider data
         $$('#range').forEach(c => c.onchange = () => {
@@ -95,7 +69,6 @@ if(navigator.geolocation) {
             map.addObject(posMarker);
             displayDATA(1, map, circle, group, document.getElementById('sel1').selectedIndex);
         }
-
         //Food filtering
         document.getElementById('sel1').onchange = filterFoodSelection;
         option = filterFoodSelection();
@@ -107,7 +80,6 @@ if(navigator.geolocation) {
             displayDATA(1, map, circle, group, document.getElementById('sel1').selectedIndex);
             return document.getElementById('sel1').selectedIndex;
         }
-
         /*------------------------NO GEO LOCALIZATION-------------------------------------*/
     }, function(){
         var icon = new H.map.Icon('assets/logos/home.png');
@@ -177,9 +149,7 @@ function addMarkerToGroup(coordinate, html, group) {
             var evIcon = new H.map.Icon('assets/markers/marker_asturiana.png');
         }
     }
-    //console.log(html.properties.cocina);
     var marker = new H.map.Marker(coordinate, { icon: evIcon });
-    // add custom data to the marker
     if (html.properties.imagen)
         imagen = html.properties.imagen;
     else
@@ -288,7 +258,6 @@ function newCircle (markerPosition, map){
 }
 window.addEventListener('resize', () => map.getViewPort().resize());
 
-
 function distanceCoords(lat1,lon1,lat2,lon2) {
     if ((lat1 == lat2) && (lon1 == lon2)) {
         return 0;
@@ -309,3 +278,17 @@ function distanceCoords(lat1,lon1,lat2,lon2) {
         return dist;
     }
 }
+document.getElementById('sidebarCollapse').addEventListener("click", function(){
+    console.log(map.getViewPort())
+    map.getViewPort().resize();
+});
+var mode = "walk";
+document.getElementById('car').addEventListener('click', function (){
+    mode = 'drive';
+})
+document.getElementById('bike').addEventListener('click', function (){
+    mode = 'bike';
+})
+document.getElementById('walk').addEventListener('click', function (){
+    mode = 'walk';
+})
