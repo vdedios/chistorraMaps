@@ -226,26 +226,31 @@ function addInfoBubble(map){
     }, false);
 }
 function displayDATA(id, map, circle, group, option){
-    let url = `https://xyz.api.here.com/hub/spaces/E6c8u3US/spatial?lat=${markerPosition.lat}&lon=${markerPosition.lng}&radius=${circle.getRadius()}&clientId=cli&access_token=AOzek1XSRkWM9CxFWw47egA`;
+    let url = `https://xyz.api.here.com/hub/spaces/E6c8u3US/spatial?lat=${markerPosition.lat}&lon=${markerPosition.lng}&radius=${circle.getRadius()}`;
+    if (option == 1)
+        url = url + '&p.cocina=ASTURIANA'
+    else if (option == 2)
+        url = url + '&p.cocina=GALLEGA'
+    else if (option == 3)
+        url = url + '&p.cocina=INTERNACIONAL'
+    else if (option == 4)
+        url = url + '&p.cocina=AMERICANA'
+    else if (option == 5)
+        url = url + '&p.cocina=POSTRES'
+    else if (option == 6)
+        url = url + '&p.cocina=TAPAS'
+    else if (option == 7)
+        url = url + '&p.ruta_tapa=1'
+    url = url + '&clientId=cli&access_token=AOzek1XSRkWM9CxFWw47egA'
     fetch(url, {
         "method": "GET"
     }).then(response => response.json()
     ).then(response => {
         for (i=0; i < response.features.length; i++){
             if (id){
-                console.log(option);
-                if ((option == 1 && response.features[i].properties.cocina == 'ASTURIANA') ||
-                    (option == 2 && response.features[i].properties.cocina == 'GALLEGA') ||
-                    (option == 3 && response.features[i].properties.cocina == 'INTERNACIONAL') ||
-                    (option == 4 && response.features[i].properties.cocina == 'AMERICANA') ||
-                    (option == 5 && response.features[i].properties.cocina == 'POSTRES') ||
-                    (option == 6 && response.features[i].properties.cocina == 'TAPAS') ||
-                    (option == 7 && response.features[i].properties.ruta_tapa == '1') ||
-                    (option == 0)){
-                    newPos= ({lat: response.features[i].geometry.coordinates[1], lng: response.features[i].geometry.coordinates[0]});
-                    respData= response.features[i];
-                    addMarkerToGroup(newPos, respData, group);
-                }
+                newPos= ({lat: response.features[i].geometry.coordinates[1], lng: response.features[i].geometry.coordinates[0]});
+                respData= response.features[i];
+                addMarkerToGroup(newPos, respData, group);
             }
             else{
                 newPos= ({lat: response.features[i].geometry.coordinates[1], lng: response.features[i].geometry.coordinates[0]});
