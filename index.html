@@ -133,23 +133,23 @@
                     <div id="cardInfo"></div>
                     <div id="popupHello" class="animate-entrance">
                         <div id="popupHelloTexto">
-                            <h1>¡Encuentra dónde comer!</h1>
-                            <div style="display:flex; align-items:center; margin-bottom:1em;">
-                                <p style="flex : 2;">Los restaurantes más cercanos, decide en menos de un minuto.</p>
+                            <h1>¡Te ayudamos!</h1>
+                            <div style="display:flex; align-items:center; margin-bottom:1em;" class="popupHelloText">
+                                <p style="flex : 2;">Encuentra los restaurantes más cercanos de un vistazo, decide dónde comer en menos de un minuto</p>
                                 <figure style="flex : 1;">
                                     <img src="assets/logos/comida.png" style="width:100%"/>
                                 </figure>
                             </div>
-                            <div style="display:flex; align-items:center;">
-                                <p style="flex : 8;">Para una mejor experiencia activa la ubicación</p>
+                            <div style="display:flex; align-items:center;" class="popupHelloLocalization">
                                 <figure style="flex : 1;">
                                     <img src="assets/logos/posicion.png" style="width:100%"/>
                                 </figure>
+                                <p style="flex : 10;">Para una mejor experiencia activa la ubicación</p>
                             </div>
                         </div>
                         <div id="popupHelloCerrar">
                             <button  type="button" class="popupCloseButton" id="popupClose" onclick = closePopup()>
-                            <i class="fas fa-times popupHelloCerrarCruz" style="font-size:3rem; color :#1d1919!important;"></i>
+                            <i class="fas fa-times popupHelloCerrarCruz" style="color:rgb(255, 255, 255, 0.75)!important;"></i>
                             <script>
                                 function closePopup() {
                                     document.getElementById("popupHello").style.display = "none";

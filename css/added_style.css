@@ -64,15 +64,15 @@ p{
     margin : 0!important;
 }
 #popupHello{
+    color : white !important;
     font-size : 20px;
     padding : 3rem;
     border-radius : 1rem;
-    color : #1d1919 !important;
     position : absolute;
     z-index : 2;
 }
 h1{
-    color : #1d1919 !important;
+    color : white !important;
     font-weight : bold !important;
     font-family: 'Josefin Sans', sans-serif;
 }
@@ -82,14 +82,11 @@ h1{
     top : 1em;
     right : 1em;
 }
-#popupHelloCerrarCruz:hover{
-    color : #1d1919!important;
-}
 #popupHello::after {
     content: "";
-    background-image: linear-gradient(to top left, #C82625, #FA862C);
+    background-image: linear-gradient(to top, #C82625, #FA862C);
     left: 0;
-    opacity: 0.85;
+    opacity: 1;
     top: 0;
     bottom: 0;
     right: 0;
@@ -115,24 +112,34 @@ h1{
     #cardDecription{
         padding: 1em;
     }
-#popupHello{
-    left : 30%;
-    top : 25%;
-    width : 600px;
-}
-#popupHello::after {
-    border-radius : 3rem;
-}
-.animate-entrance{
-    animation-name: hor;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out;
-    position : relative;
-}
-@keyframes hor {
-  0%   {left:-2000px; top:25%;}
-  100% {left:30%; top:25%;}
-}
+    #popupHello{
+        left : 30%;
+        top : 25%;
+        width : 600px;
+    }
+    #popupHello::after {
+        border-radius : 3rem;
+    }
+    .animate-entrance{
+        animation-name: hor;
+        animation-duration: 2s;
+        animation-timing-function: ease-in-out;
+        position : relative;
+    }
+    @keyframes hor {
+        0%   {left:-2000px; top:25%;}
+        100% {left:30%; top:25%;}
+    }
+    .popupHelloLocalization{
+        font-size : 14px;
+        text-align : center;
+    }
+    .popupHelloText{
+        font-size : 24px;
+    }
+    .popupHelloCerrarCruz{
+        font-size:3em; 
+    }
 }
 @media only screen and (max-width: 990px) {
     #cardInfo{
@@ -153,33 +160,46 @@ h1{
         margin : 0 !important;
         width : 100%;
     }
-#popupHello{
-    top : 20%;
-    margin:0.5em;
-    font-size : 18px;
-    padding : 2em;
-    border-radius : 0.5em;
-    z-index : 2;
-}
-#popupHello::after {
-    border-radius : 1.5rem;
-}
-h1{
-    font-size : 30px;
-    color : #1d1919 !important;
-    font-weight : bold !important;
-    font-family: 'Josefin Sans', sans-serif;
-}
-.animate-entrance{
-    animation-name: ver;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out;
-    position : relative;
-}
-@keyframes ver {
-  0%   {left:0.25em; top:2000px;}
-  100% {left:0.25em; top:20%;}
-}
+    #popupHello{
+        top : 20%;
+        margin:0.5em;
+        font-size : 18px;
+        padding : 2em;
+        border-radius : 0.5em;
+        z-index : 2;
+    }
+    #popupHello::after {
+        border-radius : 1.5rem;
+    }
+    h1{
+        font-size : 30px;
+        color : #1d1919 !important;
+        font-weight : bold !important;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+    .animate-entrance{
+        animation-name: ver;
+        animation-duration: 2s;
+        animation-timing-function: ease-in-out;
+        position : relative;
+    }
+    @keyframes ver {
+        0%   {left:0.25em; top:2000px;}
+        100% {left:0.25em; top:20%;}
+    }
+    .popupHelloLocalization{
+        font-size : 10px;
+        text-align : center;
+    }
+    .popupHelloText{
+        font-size : 16px;
+    }
+    .popupHelloCerrarCruz{
+        font-size:1em; 
+    }
+    h1{
+        color : white !important;
+    }
 }
 #cardDecription{
     display : flex;
@@ -246,4 +266,3 @@ h1{
     transform : rotate(180deg);
     transition:  0s;
 }
-
