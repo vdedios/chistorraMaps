@@ -1,19 +1,22 @@
-
-<h1 align="center"><code>🗺 🌭 Gistorras : A food recommendation webapp made with map HERE tools ➡️ 42Madrid map-Hackaton</code></h1>
+<h1 align="center"><code>🗺 🌭 Gistorras</code></h1>
 <div align="center">
     <sub>
         <h2>👉 To visit the website click <a href="https://vdedios.github.io/chistorraMaps/" target="_blank">here!</a></h2>
     </sub>
 <div>
     <h3 align="center">Desktop version</h3>
-    <img style="width:100%;"src="images/captura.png"></img>
+    <img style="width:100%;"src="assets/README/1.png"></img>
     <h3 align="center">Mobile version</h3>
-    <img style="width:100%;"src="images/captura2.png"></img>
+    <div style="display:flex">
+    <img style="width:100%; flex:1"src="assets/README/2.png"></img>
+    <img style="width:100%; flex:1"src="assets/README/3.png"></img>
+    </div>
 </div>
 
 ## What's all this?
 <div>
   <p>Gistorras is a useful tool for quickly finding where to eat near you!</p>
+  <p>It was made for 42Madrid Map-HAckaton using Here APIs and services</p>
 </div>
 
 ## Features
