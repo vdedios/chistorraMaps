@@ -1,5 +1,8 @@
 var platform = new H.service.Platform({
+    /*This is not well done, apikey and tokens msut be in backend but that exceeds
+     the purpose of this quick and educational implementation*/
     apikey: "VJoA7tGmC3RqiMzEPFBaLmfsHdU2GnJBRgD88cBBuwA"
+    /*----------------------------------------------------*/
 });
 const $$ = qq => document.querySelectorAll(qq);
 // Obtain the default map types from the platform object:
