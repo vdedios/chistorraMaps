@@ -1,4 +1,4 @@
-<h1 align="center"><code>🗺 🌭 Gistorras</code></h1>
+<h1 align="center"><code>🗺 🌭Gistorras: a nearby restaurant recommendation webapp</code></h1>
 <div align="center">
     <sub>
         <h2>👉 To visit the website click <a href="https://vdedios.github.io/chistorraMaps/" target="_blank">here!</a></h2>
