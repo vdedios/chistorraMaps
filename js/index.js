@@ -211,7 +211,7 @@ function displayDATA(id, map, circle, group, option){
         url = url + '&p.cocina=TAPAS'
     else if (option == 7)
         url = url + '&p.ruta_tapa=1'
-    url = url + '&clientId=cli&access_token=AOzek1XSRkWM9CxFWw47egA'
+    url = url + '&limit=35&clientId=cli&access_token=AOzek1XSRkWM9CxFWw47egA'
     fetch(url, {
         "method": "GET"
     }).then(response => response.json()
