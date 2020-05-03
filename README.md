@@ -8,8 +8,8 @@
     <img style="width:100%;"src="assets/README/1.png"></img>
     <h3 align="center">Mobile version</h3>
     <div style="display:flex">
-    <img style="width:100%; flex:1"src="assets/README/2.png"></img>
-    <img style="width:100%; flex:1"src="assets/README/3.png"></img>
+    <img style="width:100%; flex:1"src="assets/README/22.png"></img>
+    <img style="width:100%; flex:1"src="assets/README/33.png"></img>
     </div>
 </div>
 
